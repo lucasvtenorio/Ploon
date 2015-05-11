@@ -16,6 +16,7 @@
 		34CFC2501B0121E200592008 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34CFC24F1B0121E200592008 /* Images.xcassets */; };
 		34CFC2531B0121E200592008 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34CFC2511B0121E200592008 /* LaunchScreen.xib */; };
 		34CFC25F1B0121E200592008 /* PloonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 34CFC25E1B0121E200592008 /* PloonTests.m */; };
+		34CFC26A1B01460F00592008 /* PLEnemyNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 34CFC2691B01460F00592008 /* PLEnemyNode.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,8 @@
 		34CFC2581B0121E200592008 /* PloonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PloonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		34CFC25D1B0121E200592008 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		34CFC25E1B0121E200592008 /* PloonTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PloonTests.m; sourceTree = "<group>"; };
+		34CFC2681B01460F00592008 /* PLEnemyNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLEnemyNode.h; sourceTree = "<group>"; };
+		34CFC2691B01460F00592008 /* PLEnemyNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLEnemyNode.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +96,8 @@
 				34CFC2471B0121E200592008 /* GameScene.sks */,
 				34CFC2491B0121E200592008 /* GameViewController.h */,
 				34CFC24A1B0121E200592008 /* GameViewController.m */,
+				34CFC2681B01460F00592008 /* PLEnemyNode.h */,
+				34CFC2691B01460F00592008 /* PLEnemyNode.m */,
 				34CFC24C1B0121E200592008 /* Main.storyboard */,
 				34CFC24F1B0121E200592008 /* Images.xcassets */,
 				34CFC2511B0121E200592008 /* LaunchScreen.xib */,
@@ -232,6 +237,7 @@
 				34CFC2431B0121E200592008 /* AppDelegate.m in Sources */,
 				34CFC2461B0121E200592008 /* GameScene.m in Sources */,
 				34CFC2401B0121E200592008 /* main.m in Sources */,
+				34CFC26A1B01460F00592008 /* PLEnemyNode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
