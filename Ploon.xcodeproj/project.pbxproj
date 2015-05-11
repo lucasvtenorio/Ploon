@@ -1,0 +1,441 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		34CFC2401B0121E200592008 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 34CFC23F1B0121E200592008 /* main.m */; };
+		34CFC2431B0121E200592008 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 34CFC2421B0121E200592008 /* AppDelegate.m */; };
+		34CFC2461B0121E200592008 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 34CFC2451B0121E200592008 /* GameScene.m */; };
+		34CFC2481B0121E200592008 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 34CFC2471B0121E200592008 /* GameScene.sks */; };
+		34CFC24B1B0121E200592008 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34CFC24A1B0121E200592008 /* GameViewController.m */; };
+		34CFC24E1B0121E200592008 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34CFC24C1B0121E200592008 /* Main.storyboard */; };
+		34CFC2501B0121E200592008 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34CFC24F1B0121E200592008 /* Images.xcassets */; };
+		34CFC2531B0121E200592008 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34CFC2511B0121E200592008 /* LaunchScreen.xib */; };
+		34CFC25F1B0121E200592008 /* PloonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 34CFC25E1B0121E200592008 /* PloonTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		34CFC2591B0121E200592008 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 34CFC2321B0121E200592008 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 34CFC2391B0121E200592008;
+			remoteInfo = Ploon;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		34CFC23A1B0121E200592008 /* Ploon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ploon.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		34CFC23E1B0121E200592008 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		34CFC23F1B0121E200592008 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		34CFC2411B0121E200592008 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		34CFC2421B0121E200592008 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		34CFC2441B0121E200592008 /* GameScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
+		34CFC2451B0121E200592008 /* GameScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameScene.m; sourceTree = "<group>"; };
+		34CFC2471B0121E200592008 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		34CFC2491B0121E200592008 /* GameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
+		34CFC24A1B0121E200592008 /* GameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
+		34CFC24D1B0121E200592008 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		34CFC24F1B0121E200592008 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		34CFC2521B0121E200592008 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		34CFC2581B0121E200592008 /* PloonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PloonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		34CFC25D1B0121E200592008 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		34CFC25E1B0121E200592008 /* PloonTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PloonTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		34CFC2371B0121E200592008 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		34CFC2551B0121E200592008 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		34CFC2311B0121E200592008 = {
+			isa = PBXGroup;
+			children = (
+				34CFC23C1B0121E200592008 /* Ploon */,
+				34CFC25B1B0121E200592008 /* PloonTests */,
+				34CFC23B1B0121E200592008 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		34CFC23B1B0121E200592008 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				34CFC23A1B0121E200592008 /* Ploon.app */,
+				34CFC2581B0121E200592008 /* PloonTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		34CFC23C1B0121E200592008 /* Ploon */ = {
+			isa = PBXGroup;
+			children = (
+				34CFC2411B0121E200592008 /* AppDelegate.h */,
+				34CFC2421B0121E200592008 /* AppDelegate.m */,
+				34CFC2441B0121E200592008 /* GameScene.h */,
+				34CFC2451B0121E200592008 /* GameScene.m */,
+				34CFC2471B0121E200592008 /* GameScene.sks */,
+				34CFC2491B0121E200592008 /* GameViewController.h */,
+				34CFC24A1B0121E200592008 /* GameViewController.m */,
+				34CFC24C1B0121E200592008 /* Main.storyboard */,
+				34CFC24F1B0121E200592008 /* Images.xcassets */,
+				34CFC2511B0121E200592008 /* LaunchScreen.xib */,
+				34CFC23D1B0121E200592008 /* Supporting Files */,
+			);
+			path = Ploon;
+			sourceTree = "<group>";
+		};
+		34CFC23D1B0121E200592008 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				34CFC23E1B0121E200592008 /* Info.plist */,
+				34CFC23F1B0121E200592008 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		34CFC25B1B0121E200592008 /* PloonTests */ = {
+			isa = PBXGroup;
+			children = (
+				34CFC25E1B0121E200592008 /* PloonTests.m */,
+				34CFC25C1B0121E200592008 /* Supporting Files */,
+			);
+			path = PloonTests;
+			sourceTree = "<group>";
+		};
+		34CFC25C1B0121E200592008 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				34CFC25D1B0121E200592008 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		34CFC2391B0121E200592008 /* Ploon */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 34CFC2621B0121E200592008 /* Build configuration list for PBXNativeTarget "Ploon" */;
+			buildPhases = (
+				34CFC2361B0121E200592008 /* Sources */,
+				34CFC2371B0121E200592008 /* Frameworks */,
+				34CFC2381B0121E200592008 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Ploon;
+			productName = Ploon;
+			productReference = 34CFC23A1B0121E200592008 /* Ploon.app */;
+			productType = "com.apple.product-type.application";
+		};
+		34CFC2571B0121E200592008 /* PloonTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 34CFC2651B0121E200592008 /* Build configuration list for PBXNativeTarget "PloonTests" */;
+			buildPhases = (
+				34CFC2541B0121E200592008 /* Sources */,
+				34CFC2551B0121E200592008 /* Frameworks */,
+				34CFC2561B0121E200592008 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				34CFC25A1B0121E200592008 /* PBXTargetDependency */,
+			);
+			name = PloonTests;
+			productName = PloonTests;
+			productReference = 34CFC2581B0121E200592008 /* PloonTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		34CFC2321B0121E200592008 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = "Lucas Vicente Tenório";
+				TargetAttributes = {
+					34CFC2391B0121E200592008 = {
+						CreatedOnToolsVersion = 6.3.1;
+					};
+					34CFC2571B0121E200592008 = {
+						CreatedOnToolsVersion = 6.3.1;
+						TestTargetID = 34CFC2391B0121E200592008;
+					};
+				};
+			};
+			buildConfigurationList = 34CFC2351B0121E200592008 /* Build configuration list for PBXProject "Ploon" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 34CFC2311B0121E200592008;
+			productRefGroup = 34CFC23B1B0121E200592008 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				34CFC2391B0121E200592008 /* Ploon */,
+				34CFC2571B0121E200592008 /* PloonTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		34CFC2381B0121E200592008 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				34CFC2531B0121E200592008 /* LaunchScreen.xib in Resources */,
+				34CFC2501B0121E200592008 /* Images.xcassets in Resources */,
+				34CFC2481B0121E200592008 /* GameScene.sks in Resources */,
+				34CFC24E1B0121E200592008 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		34CFC2561B0121E200592008 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		34CFC2361B0121E200592008 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				34CFC24B1B0121E200592008 /* GameViewController.m in Sources */,
+				34CFC2431B0121E200592008 /* AppDelegate.m in Sources */,
+				34CFC2461B0121E200592008 /* GameScene.m in Sources */,
+				34CFC2401B0121E200592008 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		34CFC2541B0121E200592008 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				34CFC25F1B0121E200592008 /* PloonTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		34CFC25A1B0121E200592008 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 34CFC2391B0121E200592008 /* Ploon */;
+			targetProxy = 34CFC2591B0121E200592008 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		34CFC24C1B0121E200592008 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				34CFC24D1B0121E200592008 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		34CFC2511B0121E200592008 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				34CFC2521B0121E200592008 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		34CFC2601B0121E200592008 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		34CFC2611B0121E200592008 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		34CFC2631B0121E200592008 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Ploon/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		34CFC2641B0121E200592008 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Ploon/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		34CFC2661B0121E200592008 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = PloonTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Ploon.app/Ploon";
+			};
+			name = Debug;
+		};
+		34CFC2671B0121E200592008 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = PloonTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Ploon.app/Ploon";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		34CFC2351B0121E200592008 /* Build configuration list for PBXProject "Ploon" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				34CFC2601B0121E200592008 /* Debug */,
+				34CFC2611B0121E200592008 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		34CFC2621B0121E200592008 /* Build configuration list for PBXNativeTarget "Ploon" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				34CFC2631B0121E200592008 /* Debug */,
+				34CFC2641B0121E200592008 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		34CFC2651B0121E200592008 /* Build configuration list for PBXNativeTarget "PloonTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				34CFC2661B0121E200592008 /* Debug */,
+				34CFC2671B0121E200592008 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 34CFC2321B0121E200592008 /* Project object */;
+}
