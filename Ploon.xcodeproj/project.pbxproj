@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		346424E11B02738400BDE907 /* PLAnalogStick.m in Sources */ = {isa = PBXBuildFile; fileRef = 346424E01B02738400BDE907 /* PLAnalogStick.m */; };
 		34CFC2401B0121E200592008 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 34CFC23F1B0121E200592008 /* main.m */; };
 		34CFC2431B0121E200592008 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 34CFC2421B0121E200592008 /* AppDelegate.m */; };
 		34CFC2461B0121E200592008 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 34CFC2451B0121E200592008 /* GameScene.m */; };
@@ -30,6 +31,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		346424DF1B02738400BDE907 /* PLAnalogStick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLAnalogStick.h; sourceTree = "<group>"; };
+		346424E01B02738400BDE907 /* PLAnalogStick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLAnalogStick.m; sourceTree = "<group>"; };
 		34CFC23A1B0121E200592008 /* Ploon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ploon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34CFC23E1B0121E200592008 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		34CFC23F1B0121E200592008 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -98,6 +101,8 @@
 				34CFC24A1B0121E200592008 /* GameViewController.m */,
 				34CFC2681B01460F00592008 /* PLEnemyNode.h */,
 				34CFC2691B01460F00592008 /* PLEnemyNode.m */,
+				346424DF1B02738400BDE907 /* PLAnalogStick.h */,
+				346424E01B02738400BDE907 /* PLAnalogStick.m */,
 				34CFC24C1B0121E200592008 /* Main.storyboard */,
 				34CFC24F1B0121E200592008 /* Images.xcassets */,
 				34CFC2511B0121E200592008 /* LaunchScreen.xib */,
@@ -235,6 +240,7 @@
 			files = (
 				34CFC24B1B0121E200592008 /* GameViewController.m in Sources */,
 				34CFC2431B0121E200592008 /* AppDelegate.m in Sources */,
+				346424E11B02738400BDE907 /* PLAnalogStick.m in Sources */,
 				34CFC2461B0121E200592008 /* GameScene.m in Sources */,
 				34CFC2401B0121E200592008 /* main.m in Sources */,
 				34CFC26A1B01460F00592008 /* PLEnemyNode.m in Sources */,
@@ -432,6 +438,7 @@
 				34CFC2641B0121E200592008 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		34CFC2651B0121E200592008 /* Build configuration list for PBXNativeTarget "PloonTests" */ = {
 			isa = XCConfigurationList;
@@ -440,6 +447,7 @@
 				34CFC2671B0121E200592008 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
