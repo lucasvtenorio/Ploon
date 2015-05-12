@@ -15,6 +15,8 @@
 @property (nonatomic) CGSize initialSize;
 @property (nonatomic) CGSize finalSize;
 @property (nonatomic) CGFloat animationDuration;
+
+@property (nonatomic) CGVector error;
 @end
 
 @implementation PLEnemyNode
@@ -26,6 +28,8 @@
         self.shapeNode.glowWidth = 1.0;
         self.shapeNode.lineJoin = kCGLineJoinRound;
         self.animationDuration = 0.8;
+        
+        self.error = CGVectorMake([self randomFloatBetween:-50.0 and:50.0], [self randomFloatBetween:-50.0 and:50.0]);
         
         self.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:9.0];
         self.physicsBody.categoryBitMask = enemyCategory;
@@ -70,6 +74,11 @@
     }
 }
 
+- (CGPoint) point:(CGPoint) point withErrorPercentage:(CGFloat) percentage {
+    CGVector error = CGVectorMake(self.error.dx * percentage, self.error.dy * percentage);
+    return CGPointMake(point.x - error.dx, point.y - error.dy);
+}
+
 - (CGFloat) lenghtOfVector:(CGVector) vector{
     return sqrtf(vector.dx*vector.dx +vector.dy*vector.dy);
 }
@@ -87,6 +96,14 @@
     return CGPointMake(point.x / length, point.y / length);
 }
 
+
+- (CGPoint) point:(CGPoint) point withSeekPoint:(CGPoint) seekPoint {
+    CGPoint target_offset = CGPointMake(seekPoint.x - point.x, seekPoint.y - point.y);
+    CGFloat distance = [self lenghtOfPoint:target_offset];
+    CGFloat percentage = (MIN(distance, 20.0) / 20.0);
+    return [self point:seekPoint withErrorPercentage:percentage];
+}
+
 - (void) seekPoint:(CGPoint) point {
 //    Vector3 heroPosition = hero.transform.position;
 //    float max_speed = this.maximumMovementSpeed;
@@ -100,7 +117,7 @@
 //    Vector2 steering = desired_velocity - this.rigidbody2D.velocity;
 //    Vector2 steering_force = steering.normalized * max_force;
 //    this.rigidbody2D.AddForce (steering_force);
-    
+    // point = [self point:self.position withSeekPoint:point];
     CGFloat max_speed = 200.0;
     CGFloat max_force = 30.0;
     CGFloat slowingDistance = 50.0;
@@ -115,6 +132,13 @@
     [self.physicsBody applyForce:steering_force];
 }
 
+- (float)randomFloatBetween:(float)smallNumber and:(float)bigNumber {
+    float diff = bigNumber - smallNumber;
+    return (((float) (arc4random() % ((unsigned)RAND_MAX + 1)) / RAND_MAX) * diff) + smallNumber;
+}
+- (CGPoint) randomizePoint:(CGPoint) point withRange:(CGFloat) range {
+    return CGPointMake([self randomFloatBetween:point.x-range and:point.x + range], [self randomFloatBetween:point.y-range and:point.y + range]);
+}
 - (void) animateForTime:(CGFloat) elapsedTime {
     CGFloat percentage = elapsedTime/self.animationDuration;
     CGPathRef newPath = [self pathForInitialSize:self.initialSize finalSize: self.finalSize percentage:percentage];

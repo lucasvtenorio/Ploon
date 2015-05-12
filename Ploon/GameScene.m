@@ -35,9 +35,7 @@
     self.physicsBody.categoryBitMask = sceneEdgeCategory;
     [self addChild:self.ship];
     
-    for (int i = 0; i < 4; i++) {
-        [self spawnEnemy];
-    }
+
     [self addAnalogStick];
     
     SKAction *spawnAction = [SKAction performSelector:@selector(spawnEnemy) onTarget:self];
@@ -47,9 +45,12 @@
     return self.ship.position;
 }
 - (void) spawnEnemy {
-    PLEnemyNode *enemy = [PLEnemyNode node];
-    enemy.position = CGPointMake(rand() % (int) self.frame.size.width, rand() % (int) self.frame.size.height);//CGPointMake(CGRectGetMidX(self.frame),CGRectGetMidY(self.frame));
-    [self addChild:enemy];
+    int random = rand() % 3 + 1;
+    for (int i = 0 ; i<random; i++) {
+        PLEnemyNode *enemy = [PLEnemyNode node];
+        enemy.position = CGPointMake(rand() % (int) self.frame.size.width, rand() % (int) self.frame.size.height);//CGPointMake(CGRectGetMidX(self.frame),CGRectGetMidY(self.frame));
+        [self addChild:enemy];
+    }
 }
 - (void) addAnalogStick {
     self.moveAnalogStick = [[PLAnalogStick alloc] init];
