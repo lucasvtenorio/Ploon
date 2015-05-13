@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0235AF8E1B03A9F700433B50 /* PLBombNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0235AF8D1B03A9F700433B50 /* PLBombNode.m */; };
 		346424E11B02738400BDE907 /* PLAnalogStick.m in Sources */ = {isa = PBXBuildFile; fileRef = 346424E01B02738400BDE907 /* PLAnalogStick.m */; };
 		34CFC2401B0121E200592008 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 34CFC23F1B0121E200592008 /* main.m */; };
 		34CFC2431B0121E200592008 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 34CFC2421B0121E200592008 /* AppDelegate.m */; };
@@ -31,6 +32,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0235AF8C1B03A9F700433B50 /* PLBombNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLBombNode.h; sourceTree = "<group>"; };
+		0235AF8D1B03A9F700433B50 /* PLBombNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLBombNode.m; sourceTree = "<group>"; };
 		346424DF1B02738400BDE907 /* PLAnalogStick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLAnalogStick.h; sourceTree = "<group>"; };
 		346424E01B02738400BDE907 /* PLAnalogStick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLAnalogStick.m; sourceTree = "<group>"; };
 		34CFC23A1B0121E200592008 /* Ploon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ploon.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -99,6 +102,8 @@
 				34CFC2471B0121E200592008 /* GameScene.sks */,
 				34CFC2491B0121E200592008 /* GameViewController.h */,
 				34CFC24A1B0121E200592008 /* GameViewController.m */,
+				0235AF8C1B03A9F700433B50 /* PLBombNode.h */,
+				0235AF8D1B03A9F700433B50 /* PLBombNode.m */,
 				34CFC2681B01460F00592008 /* PLEnemyNode.h */,
 				34CFC2691B01460F00592008 /* PLEnemyNode.m */,
 				346424DF1B02738400BDE907 /* PLAnalogStick.h */,
@@ -240,6 +245,7 @@
 			files = (
 				34CFC24B1B0121E200592008 /* GameViewController.m in Sources */,
 				34CFC2431B0121E200592008 /* AppDelegate.m in Sources */,
+				0235AF8E1B03A9F700433B50 /* PLBombNode.m in Sources */,
 				346424E11B02738400BDE907 /* PLAnalogStick.m in Sources */,
 				34CFC2461B0121E200592008 /* GameScene.m in Sources */,
 				34CFC2401B0121E200592008 /* main.m in Sources */,
@@ -372,6 +378,7 @@
 				INFOPLIST_FILE = Ploon/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -382,6 +389,7 @@
 				INFOPLIST_FILE = Ploon/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

@@ -56,7 +56,6 @@ const NSTimeInterval kThumbSpringBackDuration = 0.15;
 }
 
 - (CGFloat) thumbNodeDiameter {
-#warning changes
     return self.thumbNode.size.width;
 }
 
@@ -79,6 +78,7 @@ const NSTimeInterval kThumbSpringBackDuration = 0.15;
         self.thumbNodeDiameter = MIN(tImage.size.width, tImage.size.height);
     }
 }
+
 - (void) setBackgroundImage:(UIImage *) image sizeToFit:(BOOL) sizeToFit{
     UIImage *tImage = image != nil ? image : [UIImage imageNamed:@"aSBgImg"];
     self.backgroundNode.texture = [SKTexture textureWithImage:tImage];

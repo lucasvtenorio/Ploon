@@ -12,8 +12,6 @@
 
 @interface PLEnemyNode ()
 @property (nonatomic, strong) SKShapeNode *shapeNode;
-@property (nonatomic) CGSize initialSize;
-@property (nonatomic) CGSize finalSize;
 @property (nonatomic) CGFloat animationDuration;
 
 @property (nonatomic) CGVector error;
@@ -35,29 +33,13 @@
         self.physicsBody.categoryBitMask = enemyCategory;
         self.physicsBody.collisionBitMask = sceneEdgeCategory | enemyCategory | shipCategory;
         
-        SKAction *action = [SKAction customActionWithDuration:self.animationDuration actionBlock:^(SKNode *node, CGFloat elapsedTime) {
-            if ([node isKindOfClass:[PLEnemyNode class]]) {
-                PLEnemyNode *enemy = (PLEnemyNode *)node;
-                [enemy animateForTime:elapsedTime];
-            }
-        }];
-        
-        SKAction *reverse = [SKAction customActionWithDuration:self.animationDuration actionBlock:^(SKNode *node, CGFloat elapsedTime) {
-            if ([node isKindOfClass:[PLEnemyNode class]]) {
-                PLEnemyNode *enemy = (PLEnemyNode *)node;
-                [enemy reverseForTime:elapsedTime];
-            }
-        }];
+
         
         SKAction *test1 = [SKAction scaleXTo:0.8 y:1.2 duration:self.animationDuration];
         SKAction *test2 = [SKAction scaleXTo:1.2 y:0.8 duration:self.animationDuration];
         
         
         SKAction *behaviour = [SKAction performSelector:@selector(runBehaviour) onTarget:self];
-        
-        
-        self.initialSize = CGSizeMake(120.0, 180.0);
-        self.finalSize = CGSizeMake(180.0, 120.0);
         [self addChild:self.shapeNode];
         [self runAction:[SKAction repeatActionForever:[SKAction sequence:@[test1, test2]]]];
         [self runAction:[SKAction repeatActionForever:[SKAction sequence:@[behaviour, [SKAction waitForDuration:0.016 withRange:0.01]]]]];
@@ -118,7 +100,7 @@
 //    Vector2 steering_force = steering.normalized * max_force;
 //    this.rigidbody2D.AddForce (steering_force);
     // point = [self point:self.position withSeekPoint:point];
-    CGFloat max_speed = 200.0;
+    CGFloat max_speed = 100.0;
     CGFloat max_force = 30.0;
     CGFloat slowingDistance = 50.0;
     CGPoint target_offset = CGPointMake(point.x - self.position.x, point.y - self.position.y);
@@ -136,19 +118,9 @@
     float diff = bigNumber - smallNumber;
     return (((float) (arc4random() % ((unsigned)RAND_MAX + 1)) / RAND_MAX) * diff) + smallNumber;
 }
+
 - (CGPoint) randomizePoint:(CGPoint) point withRange:(CGFloat) range {
     return CGPointMake([self randomFloatBetween:point.x-range and:point.x + range], [self randomFloatBetween:point.y-range and:point.y + range]);
-}
-- (void) animateForTime:(CGFloat) elapsedTime {
-    CGFloat percentage = elapsedTime/self.animationDuration;
-    CGPathRef newPath = [self pathForInitialSize:self.initialSize finalSize: self.finalSize percentage:percentage];
-    self.shapeNode.path = newPath;
-}
-
-- (void) reverseForTime:(CGFloat) elapsedTime {
-    CGFloat percentage = elapsedTime/self.animationDuration;
-    CGPathRef newPath = [self pathForInitialSize:self.finalSize finalSize: self.initialSize percentage:percentage];
-    self.shapeNode.path = newPath;
 }
 
 - (CGFloat) interpolateWithInitial:(CGFloat) initial final:(CGFloat) final percentage:(CGFloat) percentage {

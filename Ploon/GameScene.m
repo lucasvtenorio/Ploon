@@ -8,6 +8,7 @@
 
 #import "GameScene.h"
 #import "PLEnemyNode.h"
+#import "PLBombNode.h"
 
 
 @interface GameScene ()
@@ -16,11 +17,15 @@
 @property (nonatomic) CGPoint startTouch;
 @property (nonatomic) PLAnalogStick *moveAnalogStick;
 
+@property (nonatomic, strong) NSArray *spawnPositions;
+
 @end
 
 @implementation GameScene
 
 -(void)didMoveToView:(SKView *)view {
+    self.backgroundColor = [UIColor blackColor];
+    self.physicsWorld.contactDelegate = self;
     self.ship = [SKSpriteNode spriteNodeWithImageNamed:@"Spaceship"];
     self.ship.size = CGSizeMake(35.0, 35.0);
     self.ship.position = CGPointMake(CGRectGetMidX(self.frame),
@@ -29,6 +34,7 @@
     self.ship.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:15.0];
     self.ship.physicsBody.categoryBitMask = shipCategory;
     self.ship.physicsBody.collisionBitMask = sceneEdgeCategory | enemyCategory;
+    self.ship.physicsBody.contactTestBitMask = enemyCategory;
     //[self.ship setScale:0.15];
     
     self.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:CGRectMake(0.0, 0.0, self.frame.size.width, self.frame.size.height)];
@@ -37,10 +43,26 @@
     
 
     [self addAnalogStick];
-    
+    [self populateSpawnPositions];
     SKAction *spawnAction = [SKAction performSelector:@selector(spawnEnemy) onTarget:self];
-    [self runAction:[SKAction repeatActionForever:[SKAction sequence:@[[SKAction waitForDuration:2.0], spawnAction]]]];
+    [self runAction:[SKAction repeatActionForever:[SKAction sequence:@[[SKAction waitForDuration:5.0], spawnAction]]]];
+    
+    
+    PLBombNode *bomb = [[PLBombNode alloc] initWithRadius:60.0];
+    bomb.position = CGPointMake(CGRectGetMidX(self.frame),
+                                CGRectGetMidY(self.frame));
+    [self addChild:bomb];
 }
+
+- (void) populateSpawnPositions {
+    CGPoint position1 = CGPointMake(0.0, 0.0);
+    CGFloat delta = 30.0;
+    CGPoint position2 = CGPointMake(0.0, self.frame.size.height - delta);
+    CGPoint position3 = CGPointMake(self.frame.size.width - delta, 0.0);
+    CGPoint position4 = CGPointMake(self.frame.size.width - delta, self.frame.size.height - delta);
+    self.spawnPositions = @[[NSValue valueWithCGPoint:position2], [NSValue valueWithCGPoint:position3], [NSValue valueWithCGPoint:position4]];
+}
+
 - (CGPoint) playerPosition {
     return self.ship.position;
 }
@@ -48,7 +70,8 @@
     int random = rand() % 3 + 1;
     for (int i = 0 ; i<random; i++) {
         PLEnemyNode *enemy = [PLEnemyNode node];
-        enemy.position = CGPointMake(rand() % (int) self.frame.size.width, rand() % (int) self.frame.size.height);//CGPointMake(CGRectGetMidX(self.frame),CGRectGetMidY(self.frame));
+        CGPoint randomPosition = [self.spawnPositions[rand() % [self.spawnPositions count]] CGPointValue];
+        enemy.position = randomPosition;//CGPointMake(CGRectGetMidX(self.frame),CGRectGetMidY(self.frame));
         [self addChild:enemy];
     }
 }
@@ -67,6 +90,7 @@
 - (CGFloat) lenghtOfPoint:(CGPoint) point{
     return sqrtf(point.x*point.x +point.y*point.y);
 }
+
 - (CGPoint) normalize:(CGPoint) point {
     CGFloat length = [self lenghtOfPoint:point];
     return CGPointMake(point.x / length, point.y / length);
@@ -77,41 +101,34 @@
     return [self normalize:difference];
 }
 
-//-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-//    /* Called when a touch begins */
-//    
-//    for (UITouch *touch in touches) {
-//        CGPoint location = [touch locationInNode:self];
-//        if (!self.touched) {
-//            self.startTouch = location;
-//            self.touched = YES;
-//        }
-//        break;
-//    }
-//}
-//
-//
-//- (void) touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-//    for (UITouch *touch in touches) {
-//        if (self.touched) {
-//            CGPoint location = [touch locationInNode:self];
-//            CGPoint vector = [self normalizedDifferenceWithStartingPoint:self.startTouch andEndPoint:location];
-//            CGFloat mass = self.ship.physicsBody.mass;
-//            [self.ship.physicsBody applyForce:CGVectorMake(mass*vector.x * 1500.0, mass* vector.y* 1500.0)];
-//            NSLog(@"Vector %@ %f", NSStringFromCGPoint(vector), mass);
-//        }
-//        break;
-//    }
-//}
-//
-//- (void) touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-//    self.touched = NO;
-//}
 - (void) analogStick:(PLAnalogStick *)analogStick movedWithVelocity:(CGPoint)velocity andAngularVelocity:(CGFloat)angularVelocity {
     self.ship.position = CGPointMake(self.ship.position.x + (velocity.x * 0.12), self.ship.position.y + (velocity.y * 0.12));
+    
     self.ship.zRotation = angularVelocity;
 }
+- (void) didBeginContact:(SKPhysicsContact *)contact {
+    if (contact.bodyA.categoryBitMask == shipCategory) {
+        if (contact.bodyB.categoryBitMask == enemyCategory) {
+            [self playerContactedEnemy];
+        }
+    }else if (contact.bodyA.categoryBitMask == enemyCategory) {
+        if (contact.bodyB.categoryBitMask == shipCategory) {
+            [self playerContactedEnemy];
+        }
+    }
+}
 
+- (void) playerContactedEnemy {
+    if (self.gameDelegate) {
+        if ([self.gameDelegate respondsToSelector:@selector(gameSceneGameDidEnd:)])  {
+            [self.gameDelegate gameSceneGameDidEnd:self];
+        }
+    }
+}
+- (void) cleanup {
+    [self removeAllChildren];
+    [self removeAllActions];
+}
 -(void)update:(CFTimeInterval)currentTime {
     /* Called before each frame is rendered */
 }
