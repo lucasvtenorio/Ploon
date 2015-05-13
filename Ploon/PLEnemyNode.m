@@ -13,8 +13,6 @@
 @interface PLEnemyNode ()
 @property (nonatomic, strong) SKShapeNode *shapeNode;
 @property (nonatomic) CGFloat animationDuration;
-
-@property (nonatomic) CGVector error;
 @end
 
 @implementation PLEnemyNode
@@ -22,17 +20,17 @@
     if (self = [super init]) {
         
         self.shapeNode = [SKShapeNode shapeNodeWithPath:[self pathForSize:CGSizeMake(20.0, 20.0)] centered:YES];
-        self.shapeNode.lineWidth = 3.0;
-        self.shapeNode.glowWidth = 1.0;
+        self.shapeNode.strokeColor = [UIColor ploomEnemyStrokeColor];
+        self.shapeNode.fillColor = [UIColor ploomEnemyFillColor];
+        //self.shapeNode.lineWidth = 3.0;
+        //self.shapeNode.glowWidth = 1.0;
         self.shapeNode.lineJoin = kCGLineJoinRound;
+        
         self.animationDuration = 0.8;
-        
-        self.error = CGVectorMake([self randomFloatBetween:-50.0 and:50.0], [self randomFloatBetween:-50.0 and:50.0]);
-        
         self.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:9.0];
         self.physicsBody.categoryBitMask = enemyCategory;
         self.physicsBody.collisionBitMask = sceneEdgeCategory | enemyCategory | shipCategory;
-        
+        self.physicsBody.allowsRotation = NO;
 
         
         SKAction *test1 = [SKAction scaleXTo:0.8 y:1.2 duration:self.animationDuration];
@@ -56,11 +54,6 @@
     }
 }
 
-- (CGPoint) point:(CGPoint) point withErrorPercentage:(CGFloat) percentage {
-    CGVector error = CGVectorMake(self.error.dx * percentage, self.error.dy * percentage);
-    return CGPointMake(point.x - error.dx, point.y - error.dy);
-}
-
 - (CGFloat) lenghtOfVector:(CGVector) vector{
     return sqrtf(vector.dx*vector.dx +vector.dy*vector.dy);
 }
@@ -78,28 +71,7 @@
     return CGPointMake(point.x / length, point.y / length);
 }
 
-
-- (CGPoint) point:(CGPoint) point withSeekPoint:(CGPoint) seekPoint {
-    CGPoint target_offset = CGPointMake(seekPoint.x - point.x, seekPoint.y - point.y);
-    CGFloat distance = [self lenghtOfPoint:target_offset];
-    CGFloat percentage = (MIN(distance, 20.0) / 20.0);
-    return [self point:seekPoint withErrorPercentage:percentage];
-}
-
 - (void) seekPoint:(CGPoint) point {
-//    Vector3 heroPosition = hero.transform.position;
-//    float max_speed = this.maximumMovementSpeed;
-//    float max_force = this.maximumMovementForce;
-//    
-//    Vector3 target_offset = heroPosition - this.transform.position;
-//    float distance = target_offset.magnitude;
-//    float ramped_speed = max_speed * (distance / slowingDistance);
-//    float clipped_speed = Mathf.Min (ramped_speed, max_speed);
-//    Vector2 desired_velocity = (clipped_speed / distance) * (new Vector2 (target_offset.x, target_offset.y));
-//    Vector2 steering = desired_velocity - this.rigidbody2D.velocity;
-//    Vector2 steering_force = steering.normalized * max_force;
-//    this.rigidbody2D.AddForce (steering_force);
-    // point = [self point:self.position withSeekPoint:point];
     CGFloat max_speed = 100.0;
     CGFloat max_force = 30.0;
     CGFloat slowingDistance = 50.0;
@@ -150,4 +122,12 @@
     return mutablePath;
 }
 
+- (void) animateDeath {
+    NSString *myParticlePath = [[NSBundle mainBundle] pathForResource:@"PLEnemyDeathParticle" ofType:@"sks"];
+    SKEmitterNode *myParticle = [NSKeyedUnarchiver unarchiveObjectWithFile:myParticlePath];
+    myParticle.particlePosition = self.position;
+    //myParticle.particleBirthRate = 5;
+    [self.parent addChild:myParticle];
+    [self removeFromParent];
+}
 @end

@@ -9,5 +9,5 @@
 #import <SpriteKit/SpriteKit.h>
 
 @interface PLEnemyNode : SKNode
-
+- (void) animateDeath;
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "PLBombNode.h"
-
+#import "Ploon.h"
 @interface PLBombNode ()
 @property (nonatomic, strong) SKShapeNode *mainShapeNode;
 @property (nonatomic, strong) SKShapeNode *detailShapeNode;
@@ -28,8 +28,8 @@
     self.mainShapeNode = [SKShapeNode shapeNodeWithCircleOfRadius:self.radius];
     self.detailShapeNode = [SKShapeNode shapeNodeWithCircleOfRadius:self.radius/2.0];
     
-    self.mainShapeNode.lineWidth = 2.0;
-    self.detailShapeNode.lineWidth = 2.0;
+    self.mainShapeNode.lineWidth = 3.0;
+    self.detailShapeNode.lineWidth = 1.0;
     
     [self addChild:self.mainShapeNode];
     [self addChild:self.detailShapeNode];
@@ -37,6 +37,8 @@
 
 - (void) setupPhysics{
     self.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:self.radius];
+    self.physicsBody.categoryBitMask = bombCategory;
+    self.physicsBody.collisionBitMask = sceneEdgeCategory;
 }
 
 - (void) setupAnimations {
@@ -45,5 +47,10 @@
     SKAction *sequence = [SKAction sequence:@[growAction, shrinkAction]];
     SKAction *animateForever = [SKAction repeatActionForever:sequence];
     [self.detailShapeNode runAction:animateForever];
+}
+
+- (void) animateDeath {
+    SKAction *disappear = [SKAction sequence:@[[SKAction scaleTo:0.0 duration:0.5], [SKAction removeFromParent]]];
+    [self runAction:disappear];
 }
 @end

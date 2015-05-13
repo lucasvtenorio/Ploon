@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		0235AF8E1B03A9F700433B50 /* PLBombNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0235AF8D1B03A9F700433B50 /* PLBombNode.m */; };
+		343DD21C1B03C34B0044DC8B /* PLPlayerNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 343DD21B1B03C34B0044DC8B /* PLPlayerNode.m */; };
+		343DD21F1B03DFFB0044DC8B /* PLEnemyDeathParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 343DD21D1B03DFFB0044DC8B /* PLEnemyDeathParticle.sks */; };
+		343DD2201B03DFFB0044DC8B /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 343DD21E1B03DFFB0044DC8B /* spark.png */; };
+		343DD2231B03ED600044DC8B /* UIColor+Ploom.m in Sources */ = {isa = PBXBuildFile; fileRef = 343DD2221B03ED600044DC8B /* UIColor+Ploom.m */; };
 		346424E11B02738400BDE907 /* PLAnalogStick.m in Sources */ = {isa = PBXBuildFile; fileRef = 346424E01B02738400BDE907 /* PLAnalogStick.m */; };
 		34CFC2401B0121E200592008 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 34CFC23F1B0121E200592008 /* main.m */; };
 		34CFC2431B0121E200592008 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 34CFC2421B0121E200592008 /* AppDelegate.m */; };
@@ -34,6 +38,13 @@
 /* Begin PBXFileReference section */
 		0235AF8C1B03A9F700433B50 /* PLBombNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLBombNode.h; sourceTree = "<group>"; };
 		0235AF8D1B03A9F700433B50 /* PLBombNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLBombNode.m; sourceTree = "<group>"; };
+		343DD2191B03BBD30044DC8B /* Ploon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Ploon.h; sourceTree = "<group>"; };
+		343DD21A1B03C34B0044DC8B /* PLPlayerNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLPlayerNode.h; sourceTree = "<group>"; };
+		343DD21B1B03C34B0044DC8B /* PLPlayerNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLPlayerNode.m; sourceTree = "<group>"; };
+		343DD21D1B03DFFB0044DC8B /* PLEnemyDeathParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = PLEnemyDeathParticle.sks; sourceTree = "<group>"; };
+		343DD21E1B03DFFB0044DC8B /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
+		343DD2211B03ED600044DC8B /* UIColor+Ploom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Ploom.h"; sourceTree = "<group>"; };
+		343DD2221B03ED600044DC8B /* UIColor+Ploom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Ploom.m"; sourceTree = "<group>"; };
 		346424DF1B02738400BDE907 /* PLAnalogStick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLAnalogStick.h; sourceTree = "<group>"; };
 		346424E01B02738400BDE907 /* PLAnalogStick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLAnalogStick.m; sourceTree = "<group>"; };
 		34CFC23A1B0121E200592008 /* Ploon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ploon.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,6 +106,7 @@
 		34CFC23C1B0121E200592008 /* Ploon */ = {
 			isa = PBXGroup;
 			children = (
+				343DD2191B03BBD30044DC8B /* Ploon.h */,
 				34CFC2411B0121E200592008 /* AppDelegate.h */,
 				34CFC2421B0121E200592008 /* AppDelegate.m */,
 				34CFC2441B0121E200592008 /* GameScene.h */,
@@ -102,16 +114,22 @@
 				34CFC2471B0121E200592008 /* GameScene.sks */,
 				34CFC2491B0121E200592008 /* GameViewController.h */,
 				34CFC24A1B0121E200592008 /* GameViewController.m */,
+				343DD21A1B03C34B0044DC8B /* PLPlayerNode.h */,
+				343DD21B1B03C34B0044DC8B /* PLPlayerNode.m */,
 				0235AF8C1B03A9F700433B50 /* PLBombNode.h */,
 				0235AF8D1B03A9F700433B50 /* PLBombNode.m */,
 				34CFC2681B01460F00592008 /* PLEnemyNode.h */,
 				34CFC2691B01460F00592008 /* PLEnemyNode.m */,
 				346424DF1B02738400BDE907 /* PLAnalogStick.h */,
 				346424E01B02738400BDE907 /* PLAnalogStick.m */,
+				343DD2211B03ED600044DC8B /* UIColor+Ploom.h */,
+				343DD2221B03ED600044DC8B /* UIColor+Ploom.m */,
 				34CFC24C1B0121E200592008 /* Main.storyboard */,
 				34CFC24F1B0121E200592008 /* Images.xcassets */,
 				34CFC2511B0121E200592008 /* LaunchScreen.xib */,
 				34CFC23D1B0121E200592008 /* Supporting Files */,
+				343DD21D1B03DFFB0044DC8B /* PLEnemyDeathParticle.sks */,
+				343DD21E1B03DFFB0044DC8B /* spark.png */,
 			);
 			path = Ploon;
 			sourceTree = "<group>";
@@ -223,7 +241,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				34CFC2531B0121E200592008 /* LaunchScreen.xib in Resources */,
+				343DD2201B03DFFB0044DC8B /* spark.png in Resources */,
 				34CFC2501B0121E200592008 /* Images.xcassets in Resources */,
+				343DD21F1B03DFFB0044DC8B /* PLEnemyDeathParticle.sks in Resources */,
 				34CFC2481B0121E200592008 /* GameScene.sks in Resources */,
 				34CFC24E1B0121E200592008 /* Main.storyboard in Resources */,
 			);
@@ -243,6 +263,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				343DD21C1B03C34B0044DC8B /* PLPlayerNode.m in Sources */,
+				343DD2231B03ED600044DC8B /* UIColor+Ploom.m in Sources */,
 				34CFC24B1B0121E200592008 /* GameViewController.m in Sources */,
 				34CFC2431B0121E200592008 /* AppDelegate.m in Sources */,
 				0235AF8E1B03A9F700433B50 /* PLBombNode.m in Sources */,

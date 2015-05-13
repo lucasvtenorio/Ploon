@@ -9,9 +9,7 @@
 #import <SpriteKit/SpriteKit.h>
 #import "PLAnalogStick.h"
 
-static const uint8_t shipCategory = 1;
-static const uint8_t enemyCategory = 2;
-static const uint8_t sceneEdgeCategory = 3;
+#import "Ploon.h"
 
 
 @class GameScene;

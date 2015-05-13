@@ -11,5 +11,5 @@
 @interface PLBombNode : SKNode
 @property (nonatomic, readonly) CGFloat radius;
 - (instancetype) initWithRadius:(CGFloat) radius;
-
+- (void) animateDeath;
 @end
