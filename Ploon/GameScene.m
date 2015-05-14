@@ -24,6 +24,10 @@
 
 @property (nonatomic) NSUInteger enemiesPerWave;
 
+@property (nonatomic, strong) SKLabelNode *scoreLabelNode;
+@property (nonatomic) NSUInteger numberOfEnemiesKilled;
+@property (nonatomic) NSUInteger maximumNumberofEnemies;
+
 @end
 
 @implementation GameScene
@@ -32,6 +36,7 @@
 
 -(void)didMoveToView:(SKView *)view {
     [self setupSets];
+    self.maximumNumberofEnemies = 200;
     self.physicsWorld.gravity = CGVectorMake(0.0, 0.0);
     self.backgroundColor = [UIColor blackColor];
     self.physicsWorld.contactDelegate = self;
@@ -40,13 +45,15 @@
     
     self.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:CGRectMake(0.0, 0.0, self.frame.size.width, self.frame.size.height)];
     self.physicsBody.categoryBitMask = sceneEdgeCategory;
-    //[self setupBackground];
+    [self setupBackground];
     [self setupPlayer];
     [self addAnalogStick];
     [self populateSpawnPositions];
     [self setupActions];
     [self setupDifficulty];
+    [self setupUI];
     //[self setupFilter];
+    
 }
 
 
@@ -56,13 +63,35 @@
     self.enemiesSet = nil;
 }
 
-#pragma mark - Setup
 
+
+#pragma mark - UI
+
+- (void) setupUI {
+    self.numberOfEnemiesKilled = 0;
+    self.scoreLabelNode = [SKLabelNode node];
+    self.scoreLabelNode.text = @"Score: 0";
+    self.scoreLabelNode.fontColor = [UIColor whiteColor];
+
+    CGFloat delta = 100.0;
+    self.scoreLabelNode.position = CGPointMake(delta, self.frame.size.height - delta);
+    [self addChild:self.scoreLabelNode];
+    
+    SKAction *updateScore = [SKAction performSelector:@selector(updateScore) onTarget:self];
+    SKAction *timing = [SKAction sequence:@[[SKAction waitForDuration:0.1], updateScore]];
+    SKAction *repeatForever = [SKAction repeatActionForever:timing];
+    [self runAction:repeatForever];
+}
+
+- (void) updateScore {
+    self.scoreLabelNode.text = [NSString stringWithFormat:@"Score: %lu", (unsigned long)self.numberOfEnemiesKilled];
+}
+#pragma mark - Setup
 - (void) setupDifficulty {
-    self.enemiesPerWave = 3;
+    self.enemiesPerWave = 2;
     
     SKAction *increase = [SKAction runBlock:^{
-        if (self.enemiesPerWave < 20) {
+        if (self.enemiesPerWave < 40) {
             self.enemiesPerWave = self.enemiesPerWave + 2;
         }
     }];
@@ -85,7 +114,7 @@
 
 - (void) setupActions {
     SKAction *spawnEnemies = [SKAction performSelector:@selector(spawnEnemy) onTarget:self];
-    [self runAction:[SKAction repeatActionForever:[SKAction sequence:@[spawnEnemies,[SKAction waitForDuration:3.0]]]]];
+    [self runAction:[SKAction repeatActionForever:[SKAction sequence:@[spawnEnemies,[SKAction waitForDuration:2.0]]]]];
     
     
     SKAction *spawnBombs = [SKAction performSelector:@selector(spawnBomb) onTarget:self];
@@ -101,10 +130,8 @@
     self.spawnPositions = @[[NSValue valueWithCGPoint:position2], [NSValue valueWithCGPoint:position3], [NSValue valueWithCGPoint:position4]];
 }
 
-
-
 - (void) spawnBomb{
-    if (self.bombsSet.count < 3) {
+    if (self.bombsSet.count < 5) {
         PLBombNode *bomb = [[PLBombNode alloc] initWithRadius:35.0];
         bomb.position = CGPointMake([self randomFloatBetween:35.0 and:self.frame.size.width - 2* 35.0], [self randomFloatBetween:35.0 and:self.frame.size.height - 2* 35.0]);
         [self.bombsSet addObject:bomb];
@@ -114,12 +141,15 @@
 
 - (void) spawnEnemy {
     NSUInteger random = self.enemiesPerWave;
-    CGPoint randomPosition = [self.spawnPositions[rand() % [self.spawnPositions count]] CGPointValue];
-    for (int i = 0 ; i<random; i++) {
-        PLEnemyNode *enemy = [PLEnemyNode node];
-        enemy.position = randomPosition;
-        [self.enemiesSet addObject:enemy];
-        [self addChild:enemy];
+    if (random + self.enemiesSet.count <= self.maximumNumberofEnemies) {
+        CGPoint randomPosition = [self.spawnPositions[rand() % [self.spawnPositions count]] CGPointValue];
+        CGFloat delta = 3.0;
+        for (int i = 0 ; i<random; i++) {
+            PLEnemyNode *enemy = [PLEnemyNode node];
+            enemy.position = CGPointMake(randomPosition.x + delta*i, randomPosition.y + delta*i);
+            [self.enemiesSet addObject:enemy];
+            [self addChild:enemy];
+        }
     }
 }
 
@@ -132,6 +162,9 @@
     self.moveAnalogStick.thumbNodeDiameter = thumbDiametr;
     self.moveAnalogStick.position = CGPointMake(joysticksRadius + 25, joysticksRadius + 25);
     self.moveAnalogStick.delegate = self;
+    self.moveAnalogStick.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:75];
+    self.moveAnalogStick.physicsBody.categoryBitMask = uiCategory;
+    self.moveAnalogStick.physicsBody.dynamic = NO;
     [self addChild:self.moveAnalogStick];
 }
 
@@ -161,15 +194,17 @@
         }
     }
 }
+
 - (void) playerContactedBomb:(SKNode *) bomb {
     PLBombNode *bombNode = (PLBombNode *) bomb;
-    CGFloat radius = bombNode.radius;
+    CGFloat radius = bombNode.radius * 1.5;
     
     
     NSSet *enemies = [self enemiesInRadius:radius fromPoint:bombNode.position];
     
     for (PLEnemyNode *enemy in enemies) {
         [self.enemiesSet removeObject:enemy];
+        self.numberOfEnemiesKilled++;
         [enemy animateDeath];
     }
     [self.bombsSet removeObject:bombNode];
@@ -234,6 +269,7 @@
     CGFloat x = 0.0;
     CGFloat y = 0.0;
     
+    UIColor *color = [UIColor colorWithWhite:1.0 alpha:0.2];
     while (x < self.frame.size.width) {
         CGPoint a = CGPointMake(x, 0.0);
         CGPoint b = CGPointMake(x, self.frame.size.height);
@@ -241,6 +277,7 @@
         points[0] = a;
         points[1] = b;
         SKShapeNode *shapeNode = [SKShapeNode shapeNodeWithPoints:points count:2];
+        shapeNode.strokeColor = color;
         [self addChild:shapeNode];
         x+=gridSize.width;
     }
@@ -252,12 +289,18 @@
         points[0] = a;
         points[1] = b;
         SKShapeNode *shapeNode = [SKShapeNode shapeNodeWithPoints:points count:2];
+        shapeNode.strokeColor = color;
         [self addChild:shapeNode];
         y+=gridSize.height;
     }
 }
 - (void) setFilterInputScale:(CGFloat) inputScale {
     [self.filter setValue:[NSNumber numberWithFloat:inputScale] forKey:@"inputScale"];
+}
+
+- (void) setFilterPoint:(CGPoint) point {
+    NSLog(@"Point %@", NSStringFromCGPoint(point));
+    [self.filter setValue:[CIVector vectorWithX:point.x Y:point.y] forKey:@"inputCenter"];
 }
 
 - (void) setupFilter {
@@ -291,5 +334,8 @@
     SKAction *sequence = [SKAction sequence:@[animate, reverse]];
     [self runAction:[SKAction repeatActionForever:sequence]];
 }
+//- (void) update:(NSTimeInterval)currentTime {
+//    [self setFilterPoint:self.ship.position];
+//}
 
 @end

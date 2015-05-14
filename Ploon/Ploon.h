@@ -11,6 +11,7 @@
     static const uint8_t shipCategory = 1<<0;
     static const uint8_t enemyCategory = 1<<1;
     static const uint8_t bombCategory = 1<<2;
-    static const uint8_t sceneEdgeCategory = 1<<3;
+    static const uint8_t uiCategory = 1<<3;
+    static const uint8_t sceneEdgeCategory = 1<<4;
 #import "UIColor+Ploom.h"
 #endif

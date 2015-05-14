@@ -10,18 +10,28 @@
 
 @implementation UIColor (Ploom)
 + (UIColor *) ploomEnemyStrokeColor {
-    return [UIColor whiteColor];
+    return [UIColor colorWithRed:204/255.0 green:38/255.0 blue:22/255.0 alpha:1.0];
 }
 
 + (UIColor *) ploomEnemyFillColor {
-    return [UIColor clearColor];
+    return [UIColor colorWithRed:255/255.0 green:111/255.0 blue:66/255.0 alpha:0.3];
 }
 
++ (UIColor *) ploomBombStrokeColor{
+    return [UIColor colorWithRed:8/255.0 green:73/255.0 blue:153/255.0 alpha:1.0];
+}
+
++ (UIColor *) ploomBombFillColor{
+    return [UIColor colorWithRed:22/255.0 green:104/255.0 blue:204/255.0 alpha:0.3];
+}
+
+
 + (UIColor *) ploomPlayerStrokeColor{
-    return [UIColor blueColor];
+    return [UIColor colorWithRed:2/255.0 green:49/255.0 blue:255/255.0 alpha:1.0];
 }
 
 + (UIColor *) ploomPlayerFillColor{
-    return [UIColor colorWithRed:0.0 green:0.0 blue:1.0 alpha:0.5];
+    return [UIColor colorWithRed:2/255.0 green:49/255.0 blue:255/255.0 alpha:0.3];
 }
+
 @end

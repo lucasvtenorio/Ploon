@@ -39,7 +39,7 @@
 -(void) setupPhysics {
     self.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:self.size.width/2.0];
     self.physicsBody.categoryBitMask = shipCategory;
-    self.physicsBody.collisionBitMask = sceneEdgeCategory | enemyCategory;
+    self.physicsBody.collisionBitMask = sceneEdgeCategory | enemyCategory | uiCategory;
     self.physicsBody.contactTestBitMask = enemyCategory | bombCategory;
 }
 

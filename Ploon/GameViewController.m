@@ -21,8 +21,8 @@
     [super viewDidLoad];
 
     // Configure the view.
-    self.gameView.showsFPS = YES;
-    self.gameView.showsNodeCount = YES;
+    //self.gameView.showsFPS = YES;
+    //self.gameView.showsNodeCount = YES;
     //skView.showsPhysics = YES;
     /* Sprite Kit applies additional optimizations to improve rendering performance */
     self.gameView.ignoresSiblingOrder = YES;

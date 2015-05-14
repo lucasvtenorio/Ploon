@@ -13,4 +13,6 @@
 + (UIColor *) ploomEnemyFillColor;
 + (UIColor *) ploomPlayerStrokeColor;
 + (UIColor *) ploomPlayerFillColor;
++ (UIColor *) ploomBombStrokeColor;
++ (UIColor *) ploomBombFillColor;
 @end

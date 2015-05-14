@@ -26,10 +26,15 @@
 
 - (void) setupShapes {
     self.mainShapeNode = [SKShapeNode shapeNodeWithCircleOfRadius:self.radius];
-    self.detailShapeNode = [SKShapeNode shapeNodeWithCircleOfRadius:self.radius/2.0];
+    self.mainShapeNode.lineWidth = 1.0;
+    //self.mainShapeNode.fillColor = [UIColor ploomBombFillColor];
+    self.mainShapeNode.strokeColor = [UIColor ploomBombStrokeColor];
     
-    self.mainShapeNode.lineWidth = 3.0;
+    
+    self.detailShapeNode = [SKShapeNode shapeNodeWithCircleOfRadius:self.radius/2.0];
     self.detailShapeNode.lineWidth = 1.0;
+    self.detailShapeNode.fillColor = [UIColor ploomBombFillColor];
+    self.detailShapeNode.strokeColor = [UIColor ploomBombStrokeColor];
     
     [self addChild:self.mainShapeNode];
     [self addChild:self.detailShapeNode];
@@ -38,7 +43,7 @@
 - (void) setupPhysics{
     self.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:self.radius];
     self.physicsBody.categoryBitMask = bombCategory;
-    self.physicsBody.collisionBitMask = sceneEdgeCategory;
+    self.physicsBody.collisionBitMask = sceneEdgeCategory | uiCategory;
 }
 
 - (void) setupAnimations {
@@ -50,7 +55,7 @@
 }
 
 - (void) animateDeath {
-    SKAction *disappear = [SKAction sequence:@[[SKAction scaleTo:0.0 duration:0.5], [SKAction removeFromParent]]];
+    SKAction *disappear = [SKAction sequence:@[[SKAction scaleTo:3.0 duration:0.25],[SKAction scaleTo:0.0 duration:0.25], [SKAction removeFromParent]]];
     [self runAction:disappear];
 }
 @end

@@ -29,7 +29,7 @@
         self.animationDuration = 0.8;
         self.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:9.0];
         self.physicsBody.categoryBitMask = enemyCategory;
-        self.physicsBody.collisionBitMask = sceneEdgeCategory | enemyCategory | shipCategory;
+        self.physicsBody.collisionBitMask =  enemyCategory | shipCategory | uiCategory;
         self.physicsBody.allowsRotation = NO;
 
         
@@ -40,7 +40,7 @@
         SKAction *behaviour = [SKAction performSelector:@selector(runBehaviour) onTarget:self];
         [self addChild:self.shapeNode];
         [self runAction:[SKAction repeatActionForever:[SKAction sequence:@[test1, test2]]]];
-        [self runAction:[SKAction repeatActionForever:[SKAction sequence:@[behaviour, [SKAction waitForDuration:0.016 withRange:0.01]]]]];
+        [self runAction:[SKAction repeatActionForever:[SKAction sequence:@[behaviour, [SKAction waitForDuration:0.016 withRange:0.00]]]]];
     }
     return self;
 }
@@ -72,8 +72,8 @@
 }
 
 - (void) seekPoint:(CGPoint) point {
-    CGFloat max_speed = 100.0;
-    CGFloat max_force = 30.0;
+    CGFloat max_speed = 200.0;
+    CGFloat max_force = 60.0;
     CGFloat slowingDistance = 50.0;
     CGPoint target_offset = CGPointMake(point.x - self.position.x, point.y - self.position.y);
     CGFloat distance = [self lenghtOfPoint:target_offset];
