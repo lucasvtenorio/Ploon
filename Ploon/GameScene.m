@@ -22,6 +22,8 @@
 @property (nonatomic, strong) NSMutableSet *enemiesSet;
 @property (nonatomic, strong) NSMutableSet *bombsSet;
 
+@property (nonatomic) NSUInteger enemiesPerWave;
+
 @end
 
 @implementation GameScene
@@ -38,11 +40,13 @@
     
     self.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:CGRectMake(0.0, 0.0, self.frame.size.width, self.frame.size.height)];
     self.physicsBody.categoryBitMask = sceneEdgeCategory;
-    
+    //[self setupBackground];
     [self setupPlayer];
     [self addAnalogStick];
     [self populateSpawnPositions];
     [self setupActions];
+    [self setupDifficulty];
+    //[self setupFilter];
 }
 
 
@@ -53,6 +57,19 @@
 }
 
 #pragma mark - Setup
+
+- (void) setupDifficulty {
+    self.enemiesPerWave = 3;
+    
+    SKAction *increase = [SKAction runBlock:^{
+        if (self.enemiesPerWave < 20) {
+            self.enemiesPerWave = self.enemiesPerWave + 2;
+        }
+    }];
+    
+    SKAction *sequence = [SKAction sequence:@[[SKAction waitForDuration:5.0], increase]];
+    [self runAction:[SKAction repeatActionForever:sequence]];
+}
 
 - (void) setupSets{
     self.enemiesSet = [NSMutableSet set];
@@ -68,7 +85,7 @@
 
 - (void) setupActions {
     SKAction *spawnEnemies = [SKAction performSelector:@selector(spawnEnemy) onTarget:self];
-    [self runAction:[SKAction repeatActionForever:[SKAction sequence:@[spawnEnemies,[SKAction waitForDuration:1.5]]]]];
+    [self runAction:[SKAction repeatActionForever:[SKAction sequence:@[spawnEnemies,[SKAction waitForDuration:3.0]]]]];
     
     
     SKAction *spawnBombs = [SKAction performSelector:@selector(spawnBomb) onTarget:self];
@@ -77,9 +94,9 @@
 
 
 - (void) populateSpawnPositions {
-    CGFloat delta = 30.0;
-    CGPoint position2 = CGPointMake(0.0, self.frame.size.height - delta);
-    CGPoint position3 = CGPointMake(self.frame.size.width - delta, 0.0);
+    CGFloat delta = 50.0;
+    CGPoint position2 = CGPointMake(delta, self.frame.size.height - delta);
+    CGPoint position3 = CGPointMake(self.frame.size.width - delta, delta);
     CGPoint position4 = CGPointMake(self.frame.size.width - delta, self.frame.size.height - delta);
     self.spawnPositions = @[[NSValue valueWithCGPoint:position2], [NSValue valueWithCGPoint:position3], [NSValue valueWithCGPoint:position4]];
 }
@@ -96,11 +113,11 @@
 }
 
 - (void) spawnEnemy {
-    int random = rand() % 3 + 1;
+    NSUInteger random = self.enemiesPerWave;
+    CGPoint randomPosition = [self.spawnPositions[rand() % [self.spawnPositions count]] CGPointValue];
     for (int i = 0 ; i<random; i++) {
         PLEnemyNode *enemy = [PLEnemyNode node];
-        CGPoint randomPosition = [self.spawnPositions[rand() % [self.spawnPositions count]] CGPointValue];
-        enemy.position = randomPosition;//CGPointMake(CGRectGetMidX(self.frame),CGRectGetMidY(self.frame));
+        enemy.position = randomPosition;
         [self.enemiesSet addObject:enemy];
         [self addChild:enemy];
     }
@@ -203,6 +220,76 @@
 - (CGPoint) normalizedDifferenceWithStartingPoint:(CGPoint) start andEndPoint:(CGPoint) end {
     CGPoint difference = CGPointMake(end.x - start.x, end.y - start.y);
     return [self normalize:difference];
+}
+
+- (CGFloat) interpolateWithInitial:(CGFloat) initial final:(CGFloat) final percentage:(CGFloat) percentage {
+    return initial + (final - initial) * percentage;
+}
+
+
+#pragma mark - Shader Test
+
+- (void) setupBackground {
+    CGSize gridSize = CGSizeMake(30.0, 30.0);
+    CGFloat x = 0.0;
+    CGFloat y = 0.0;
+    
+    while (x < self.frame.size.width) {
+        CGPoint a = CGPointMake(x, 0.0);
+        CGPoint b = CGPointMake(x, self.frame.size.height);
+        CGPoint points[2];
+        points[0] = a;
+        points[1] = b;
+        SKShapeNode *shapeNode = [SKShapeNode shapeNodeWithPoints:points count:2];
+        [self addChild:shapeNode];
+        x+=gridSize.width;
+    }
+    
+    while (y < self.frame.size.height) {
+        CGPoint a = CGPointMake(0.0, y);
+        CGPoint b = CGPointMake(self.frame.size.width, y);
+        CGPoint points[2];
+        points[0] = a;
+        points[1] = b;
+        SKShapeNode *shapeNode = [SKShapeNode shapeNodeWithPoints:points count:2];
+        [self addChild:shapeNode];
+        y+=gridSize.height;
+    }
+}
+- (void) setFilterInputScale:(CGFloat) inputScale {
+    [self.filter setValue:[NSNumber numberWithFloat:inputScale] forKey:@"inputScale"];
+}
+
+- (void) setupFilter {
+    
+    self.shouldEnableEffects = YES;
+    self.shouldRasterize = NO;
+    
+    CIFilter *bumpDistortion = [CIFilter filterWithName:@"CIBumpDistortion"];
+    [bumpDistortion setDefaults];
+    [bumpDistortion setValue:[CIVector vectorWithX:self.frame.size.width/2.0 Y:self.frame.size.height/2.0] forKey:@"inputCenter"];
+    [bumpDistortion setValue:[NSNumber numberWithFloat:300] forKey:@"inputRadius"];
+    //[bumpDistortion setValue:[NSNumber numberWithFloat:-0.5] forKey:@"inputScale"];
+    
+    self.filter = bumpDistortion;
+    [self setFilterInputScale:-0.9];
+    
+    NSTimeInterval duration = 0.5;
+    
+    SKAction *animate = [SKAction customActionWithDuration:duration actionBlock:^(SKNode *node, CGFloat elapsedTime) {
+        CGFloat percentage = elapsedTime/duration;
+        CGFloat value = [self interpolateWithInitial:-0.1 final:0.1 percentage:percentage];
+        [self setFilterInputScale:value];
+    }];
+    
+    SKAction *reverse = [SKAction customActionWithDuration:duration actionBlock:^(SKNode *node, CGFloat elapsedTime) {
+        CGFloat percentage = elapsedTime/duration;
+        CGFloat value = [self interpolateWithInitial:-0.1 final:0.1 percentage:(1-percentage)];
+        [self setFilterInputScale:value];
+    }];
+    
+    SKAction *sequence = [SKAction sequence:@[animate, reverse]];
+    [self runAction:[SKAction repeatActionForever:sequence]];
 }
 
 @end

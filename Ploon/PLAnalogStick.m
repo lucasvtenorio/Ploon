@@ -43,6 +43,7 @@ const NSTimeInterval kThumbSpringBackDuration = 0.15;
         self.isTracking = NO;
         [self addChild:self.backgroundNode];
         [self addChild:self.thumbNode];
+        self.alpha = 0.2;
     }
     return self;
 }
@@ -53,6 +54,7 @@ const NSTimeInterval kThumbSpringBackDuration = 0.15;
     SKAction *easeOut = [SKAction moveTo:self.anchorPointInPoints duration:kThumbSpringBackDuration];
     easeOut.timingMode = SKActionTimingEaseOut;
     [self.thumbNode runAction:easeOut];
+    self.alpha = 0.2;
 }
 
 - (CGFloat) thumbNodeDiameter {
@@ -116,6 +118,7 @@ const NSTimeInterval kThumbSpringBackDuration = 0.15;
         SKNode *touchedNode = [self nodeAtPoint:location];
         if (touchedNode == self.thumbNode && self.isTracking == NO) {
             self.isTracking = YES;
+            self.alpha = 1.0;
         }
     }
 }
