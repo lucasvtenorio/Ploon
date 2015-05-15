@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0209BF321B057DA100D0BC00 /* Ploom.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0209BF311B057DA100D0BC00 /* Ploom.mp3 */; };
 		0235AF8E1B03A9F700433B50 /* PLBombNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0235AF8D1B03A9F700433B50 /* PLBombNode.m */; };
 		343DD21C1B03C34B0044DC8B /* PLPlayerNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 343DD21B1B03C34B0044DC8B /* PLPlayerNode.m */; };
 		343DD21F1B03DFFB0044DC8B /* PLEnemyDeathParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 343DD21D1B03DFFB0044DC8B /* PLEnemyDeathParticle.sks */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0209BF311B057DA100D0BC00 /* Ploom.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Ploom.mp3; sourceTree = "<group>"; };
 		0235AF8C1B03A9F700433B50 /* PLBombNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLBombNode.h; sourceTree = "<group>"; };
 		0235AF8D1B03A9F700433B50 /* PLBombNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLBombNode.m; sourceTree = "<group>"; };
 		343DD2191B03BBD30044DC8B /* Ploon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Ploon.h; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 				34CFC23D1B0121E200592008 /* Supporting Files */,
 				343DD21D1B03DFFB0044DC8B /* PLEnemyDeathParticle.sks */,
 				343DD21E1B03DFFB0044DC8B /* spark.png */,
+				0209BF311B057DA100D0BC00 /* Ploom.mp3 */,
 			);
 			path = Ploon;
 			sourceTree = "<group>";
@@ -243,6 +246,7 @@
 				34CFC2531B0121E200592008 /* LaunchScreen.xib in Resources */,
 				343DD2201B03DFFB0044DC8B /* spark.png in Resources */,
 				34CFC2501B0121E200592008 /* Images.xcassets in Resources */,
+				0209BF321B057DA100D0BC00 /* Ploom.mp3 in Resources */,
 				343DD21F1B03DFFB0044DC8B /* PLEnemyDeathParticle.sks in Resources */,
 				34CFC2481B0121E200592008 /* GameScene.sks in Resources */,
 				34CFC24E1B0121E200592008 /* Main.storyboard in Resources */,

@@ -47,8 +47,10 @@
 }
 
 - (void) setupAnimations {
-    SKAction *growAction = [SKAction scaleTo:2.0 duration:4.0];
-    SKAction *shrinkAction = [SKAction scaleTo:0.5 duration:4.0];
+    SKAction *growAction = [SKAction scaleTo:2.0 duration:2.0];
+    growAction.timingMode = SKActionTimingEaseIn;
+    SKAction *shrinkAction = [SKAction scaleTo:0.5 duration:2.0];
+    shrinkAction.timingMode = SKActionTimingEaseOut;
     SKAction *sequence = [SKAction sequence:@[growAction, shrinkAction]];
     SKAction *animateForever = [SKAction repeatActionForever:sequence];
     [self.detailShapeNode runAction:animateForever];

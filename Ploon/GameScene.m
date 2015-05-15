@@ -28,6 +28,7 @@
 @property (nonatomic) NSUInteger numberOfEnemiesKilled;
 @property (nonatomic) NSUInteger maximumNumberofEnemies;
 
+
 @end
 
 @implementation GameScene
@@ -36,7 +37,7 @@
 
 -(void)didMoveToView:(SKView *)view {
     [self setupSets];
-    self.maximumNumberofEnemies = 200;
+    self.maximumNumberofEnemies = 250;
     self.physicsWorld.gravity = CGVectorMake(0.0, 0.0);
     self.backgroundColor = [UIColor blackColor];
     self.physicsWorld.contactDelegate = self;
@@ -52,18 +53,26 @@
     [self setupActions];
     [self setupDifficulty];
     [self setupUI];
+    //[self setupSound];
     //[self setupFilter];
-    
 }
 
 
 - (void) cleanup {
+    [self removeActionForKey:@"music-action-key"];
     [self removeAllChildren];
     [self removeAllActions];
     self.enemiesSet = nil;
+    
 }
 
+#pragma mark - Sound
 
+- (void) setupSound {
+    SKAction *mainMusicPlay = [SKAction playSoundFileNamed:@"Ploom.mp3" waitForCompletion:YES];
+    //SKAction *repeatMusic = [SKAction repeatActionForever:mainMusicPlay];
+    [self runAction:mainMusicPlay withKey:@"music-action-key"];
+}
 
 #pragma mark - UI
 
@@ -91,8 +100,8 @@
     self.enemiesPerWave = 2;
     
     SKAction *increase = [SKAction runBlock:^{
-        if (self.enemiesPerWave < 40) {
-            self.enemiesPerWave = self.enemiesPerWave + 2;
+        if (self.enemiesPerWave < 20) {
+            self.enemiesPerWave = self.enemiesPerWave + 1;
         }
     }];
     
@@ -141,6 +150,18 @@
 
 - (void) spawnEnemy {
     NSUInteger random = self.enemiesPerWave;
+    if (self.enemiesPerWave > 5) {
+        if (random + self.enemiesSet.count <= self.maximumNumberofEnemies) {
+            CGPoint randomPosition = [self.spawnPositions[rand() % [self.spawnPositions count]] CGPointValue];
+            CGFloat delta = 3.0;
+            for (int i = 0 ; i<random; i++) {
+                PLEnemyNode *enemy = [PLEnemyNode node];
+                enemy.position = CGPointMake(randomPosition.x + delta*i, randomPosition.y + delta*i);
+                [self.enemiesSet addObject:enemy];
+                [self addChild:enemy];
+            }
+        }
+    }
     if (random + self.enemiesSet.count <= self.maximumNumberofEnemies) {
         CGPoint randomPosition = [self.spawnPositions[rand() % [self.spawnPositions count]] CGPointValue];
         CGFloat delta = 3.0;
@@ -154,12 +175,13 @@
 }
 
 - (void) addAnalogStick {
-    self.moveAnalogStick = [[PLAnalogStick alloc] init];
+    
     CGFloat bgDiametr = 150;
     CGFloat thumbDiametr = 75;
     CGFloat joysticksRadius = bgDiametr / 2;
-    self.moveAnalogStick.backgroundNodeDiameter = bgDiametr;
-    self.moveAnalogStick.thumbNodeDiameter = thumbDiametr;
+    self.moveAnalogStick = [[PLAnalogStick alloc] initWithBackgroundSize:CGSizeMake(bgDiametr, bgDiametr) andThumbSize:CGSizeMake(thumbDiametr, thumbDiametr)];
+    //self.moveAnalogStick.backgroundNodeDiameter = bgDiametr;
+    //self.moveAnalogStick.thumbNodeDiameter = thumbDiametr;
     self.moveAnalogStick.position = CGPointMake(joysticksRadius + 25, joysticksRadius + 25);
     self.moveAnalogStick.delegate = self;
     self.moveAnalogStick.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:75];
@@ -262,14 +284,13 @@
 }
 
 
-#pragma mark - Shader Test
+#pragma mark - Background
 
-- (void) setupBackground {
-    CGSize gridSize = CGSizeMake(30.0, 30.0);
+- (void) drawGridBackgroundWithRectangleSize:(CGSize) rectangleSize {
     CGFloat x = 0.0;
     CGFloat y = 0.0;
     
-    UIColor *color = [UIColor colorWithWhite:1.0 alpha:0.2];
+    UIColor *color = [UIColor colorWithWhite:1.0 alpha:0.1];
     while (x < self.frame.size.width) {
         CGPoint a = CGPointMake(x, 0.0);
         CGPoint b = CGPointMake(x, self.frame.size.height);
@@ -279,7 +300,7 @@
         SKShapeNode *shapeNode = [SKShapeNode shapeNodeWithPoints:points count:2];
         shapeNode.strokeColor = color;
         [self addChild:shapeNode];
-        x+=gridSize.width;
+        x+=rectangleSize.width;
     }
     
     while (y < self.frame.size.height) {
@@ -291,9 +312,18 @@
         SKShapeNode *shapeNode = [SKShapeNode shapeNodeWithPoints:points count:2];
         shapeNode.strokeColor = color;
         [self addChild:shapeNode];
-        y+=gridSize.height;
+        y+=rectangleSize.height;
     }
 }
+
+- (void) setupBackground {
+    CGSize gridSize = CGSizeMake(60.0, 60.0);
+    [self drawGridBackgroundWithRectangleSize:gridSize];
+    [self drawGridBackgroundWithRectangleSize:CGSizeMake(gridSize.width/2.0, gridSize.height/2.0)];
+}
+
+
+#pragma mark - Shader Test
 - (void) setFilterInputScale:(CGFloat) inputScale {
     [self.filter setValue:[NSNumber numberWithFloat:inputScale] forKey:@"inputScale"];
 }

@@ -15,4 +15,9 @@
 + (UIColor *) ploomPlayerFillColor;
 + (UIColor *) ploomBombStrokeColor;
 + (UIColor *) ploomBombFillColor;
+
++ (UIColor *) ploomAnalogBackgroundStrokeColor;
++ (UIColor *) ploomAnalogBackgroundFillColor;
++ (UIColor *) ploomAnalogThumbStrokeColor;
++ (UIColor *) ploomAnalogThumbFillColor;
 @end

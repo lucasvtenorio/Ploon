@@ -17,6 +17,7 @@
 @property (nonatomic) CGFloat backgroundNodeDiameter;
 @property (nonatomic) CGFloat thumbNodeDiameter;
 @property (nonatomic, weak) id <PLAnalogStickDelegate> delegate;
+- (instancetype) initWithBackgroundSize:(CGSize) backgroundSize andThumbSize:(CGSize) thumbSize;
 @end
 
 

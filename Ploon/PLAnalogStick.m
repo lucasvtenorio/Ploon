@@ -7,14 +7,15 @@
 //
 
 #import "PLAnalogStick.h"
+#import "Ploon.h"
 
 
 const NSTimeInterval kThumbSpringBackDuration = 0.15;
 
 @interface PLAnalogStick ()
 @property (nonatomic, strong) CADisplayLink *velocityLoop;
-@property (nonatomic, strong) SKSpriteNode *backgroundNode;
-@property (nonatomic, strong) SKSpriteNode *thumbNode;
+@property (nonatomic, strong) SKNode *backgroundNode;
+@property (nonatomic, strong) SKNode *thumbNode;
 
 
 
@@ -23,29 +24,69 @@ const NSTimeInterval kThumbSpringBackDuration = 0.15;
 @property (nonatomic) CGPoint anchorPointInPoints;
 @property (nonatomic) CGFloat angularVelocity;
 
+@property (nonatomic) CGSize backgroundNodeSize;
+@property (nonatomic) CGSize thumbNodeSize;;
 
 @end
 
 @implementation PLAnalogStick
 
+#pragma Initialization
+
 - (instancetype) init {
     if (self = [super init]) {
-        _isTracking = NO;
-        _velocity = CGPointZero;
-        _anchorPointInPoints = CGPointZero;
-        _angularVelocity = 0.0;
-        self.backgroundNode = [SKSpriteNode node];
-        self.thumbNode = [SKSpriteNode node];
-        [self setThumbImage:nil sizeToFit:YES];
-        [self setBackgroundImage:nil sizeToFit:YES];
-        self.userInteractionEnabled = YES;
-        self.velocity = CGPointZero;
-        self.isTracking = NO;
-        [self addChild:self.backgroundNode];
-        [self addChild:self.thumbNode];
-        self.alpha = 0.2;
+        [self commonInit];
+        [self setupWithImages];
     }
     return self;
+}
+
+- (instancetype) initWithBackgroundSize:(CGSize) backgroundSize andThumbSize:(CGSize) thumbSize {
+    if (self = [super init]) {
+        [self commonInit];
+        self.backgroundNodeSize = backgroundSize;
+        self.thumbNodeSize = thumbSize;
+        [self setupWithShapes];
+    }
+    return self;
+    
+}
+
+- (void) setupWithShapes{
+    SKShapeNode *backgroundShapeNode = [SKShapeNode shapeNodeWithCircleOfRadius:self.backgroundNodeSize.width/2.0];
+    backgroundShapeNode.fillColor = [UIColor ploomAnalogBackgroundFillColor];
+    backgroundShapeNode.strokeColor = [UIColor ploomAnalogBackgroundStrokeColor];
+    
+    SKShapeNode *thumbShapeNode = [SKShapeNode shapeNodeWithCircleOfRadius:self.thumbNodeSize.width/2.0];
+    thumbShapeNode.strokeColor = [UIColor ploomAnalogThumbStrokeColor];
+    thumbShapeNode.fillColor = [UIColor ploomAnalogThumbFillColor];
+    
+    self.backgroundNode = backgroundShapeNode;
+    self.thumbNode = thumbShapeNode;
+    [self addChild:self.backgroundNode];
+    [self addChild:self.thumbNode];
+}
+
+- (void) setupWithImages {
+    self.backgroundNode = [SKSpriteNode node];
+    self.thumbNode = [SKSpriteNode node];
+    [self setThumbImage:nil sizeToFit:YES];
+    [self setBackgroundImage:nil sizeToFit:YES];
+    [self addChild:self.backgroundNode];
+    [self addChild:self.thumbNode];
+    self.backgroundNodeSize = ((SKSpriteNode *)self.backgroundNode).size;
+    self.thumbNodeSize = ((SKSpriteNode *)self.thumbNode).size;
+}
+
+- (void) commonInit{
+    _isTracking = NO;
+    _velocity = CGPointZero;
+    _anchorPointInPoints = CGPointZero;
+    _angularVelocity = 0.0;
+    self.userInteractionEnabled = YES;
+    self.velocity = CGPointZero;
+    self.isTracking = NO;
+    self.alpha = 0.4;
 }
 
 - (void) reset {
@@ -57,37 +98,61 @@ const NSTimeInterval kThumbSpringBackDuration = 0.15;
     self.alpha = 0.2;
 }
 
-- (CGFloat) thumbNodeDiameter {
-    return self.thumbNode.size.width;
+#pragma mark - Properties
+
+- (BOOL) thumbNodeIsSprite{
+    return [self.thumbNode isKindOfClass:[SKSpriteNode class]];
 }
 
-- (void) setThumbNodeDiameter:(CGFloat)thumbNodeDiameter {
-    self.thumbNode.size = CGSizeMake(thumbNodeDiameter, thumbNodeDiameter);
+- (BOOL) backgroundNodeIsSprite {
+    return [self.backgroundNode isKindOfClass:[SKSpriteNode class]];
+}
+
+- (CGFloat) thumbNodeDiameter {
+    return self.thumbNodeSize.width;
 }
 
 - (CGFloat) backgroundNodeDiameter {
-    return self.backgroundNode.size.width;
+    return self.backgroundNodeSize.width;
 }
 
+- (void) setThumbNodeDiameter:(CGFloat)thumbNodeDiameter {
+    if ([self thumbNodeIsSprite]) {
+        ((SKSpriteNode *)self.thumbNode).size = CGSizeMake(thumbNodeDiameter, thumbNodeDiameter);
+    }
+    self.thumbNodeSize = CGSizeMake(thumbNodeDiameter, thumbNodeDiameter);
+}
+
+
+
 - (void) setBackgroundNodeDiameter:(CGFloat)backgroundNodeDiameter {
-    self.backgroundNode.size = CGSizeMake(backgroundNodeDiameter, backgroundNodeDiameter);
+    if ([self backgroundNodeIsSprite]) {
+        ((SKSpriteNode *)self.backgroundNode).size = CGSizeMake(backgroundNodeDiameter, backgroundNodeDiameter);
+    }
+    self.backgroundNodeSize = CGSizeMake(backgroundNodeDiameter, backgroundNodeDiameter);
 }
 
 - (void) setThumbImage:(UIImage *) image sizeToFit:(BOOL) sizeToFit{
-    UIImage *tImage = image != nil ? image : [UIImage imageNamed:@"aSThumbImg"];
-    self.thumbNode.texture = [SKTexture textureWithImage:tImage];
-    if (sizeToFit) {
-        self.thumbNodeDiameter = MIN(tImage.size.width, tImage.size.height);
+    if ([self thumbNodeIsSprite]) {
+        UIImage *tImage = image != nil ? image : [UIImage imageNamed:@"aSThumbImg"];
+        ((SKSpriteNode *)self.thumbNode).texture = [SKTexture textureWithImage:tImage];
+        if (sizeToFit) {
+            self.thumbNodeDiameter = MIN(tImage.size.width, tImage.size.height);
+        }
     }
 }
 
 - (void) setBackgroundImage:(UIImage *) image sizeToFit:(BOOL) sizeToFit{
-    UIImage *tImage = image != nil ? image : [UIImage imageNamed:@"aSBgImg"];
-    self.backgroundNode.texture = [SKTexture textureWithImage:tImage];
-    if (sizeToFit) {
-        self.backgroundNodeDiameter = MIN(tImage.size.width, tImage.size.height);
+    if ([self backgroundNodeIsSprite]) {
+        UIImage *tImage = image != nil ? image : [UIImage imageNamed:@"aSBgImg"];
+        ((SKSpriteNode *)self.backgroundNode).texture = [SKTexture textureWithImage:tImage];
+        if (sizeToFit) {
+            self.backgroundNodeDiameter = MIN(tImage.size.width, tImage.size.height);
+        }
     }
 }
+
+#pragma mark - Delegate
 
 - (void) setDelegate:(id<PLAnalogStickDelegate>)delegate {
     _delegate = delegate;
@@ -116,7 +181,7 @@ const NSTimeInterval kThumbSpringBackDuration = 0.15;
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInNode:self];
         SKNode *touchedNode = [self nodeAtPoint:location];
-        if (touchedNode == self.thumbNode && self.isTracking == NO) {
+        if (self.isTracking == NO ){//&& touchedNode == self.thumbNode) {
             self.isTracking = YES;
             self.alpha = 1.0;
         }
@@ -135,12 +200,12 @@ const NSTimeInterval kThumbSpringBackDuration = 0.15;
             CGFloat xAnchorDistance = location.x - self.anchorPointInPoints.x;
             CGFloat yAnchorDistance = location.y - self.anchorPointInPoints.y;
             CGFloat magV = sqrt(xAnchorDistance * xAnchorDistance + yAnchorDistance * yAnchorDistance);
-            if (magV <= self.thumbNode.size.width) {
+            if (magV <= self.thumbNodeSize.width) {
                 CGPoint moveDifference = CGPointMake(xAnchorDistance , yAnchorDistance);
                 self.thumbNode.position = CGPointMake(self.anchorPointInPoints.x + moveDifference.x, self.anchorPointInPoints.y + moveDifference.y);
             }else{
-                CGFloat aX = self.anchorPointInPoints.x + xAnchorDistance / magV * self.thumbNode.size.width;
-                CGFloat aY = self.anchorPointInPoints.y + yAnchorDistance / magV * self.thumbNode.size.width;
+                CGFloat aX = self.anchorPointInPoints.x + xAnchorDistance / magV * self.thumbNodeSize.width;
+                CGFloat aY = self.anchorPointInPoints.y + yAnchorDistance / magV * self.thumbNodeSize.height;
                 self.thumbNode.position = CGPointMake(aX, aY);
             }
             CGFloat tNAnchPoinXDiff  = self.thumbNode.position.x - self.anchorPointInPoints.x;

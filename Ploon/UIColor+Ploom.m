@@ -34,4 +34,18 @@
     return [UIColor colorWithRed:2/255.0 green:49/255.0 blue:255/255.0 alpha:0.3];
 }
 
+
++ (UIColor *) ploomAnalogBackgroundStrokeColor {
+    return [UIColor whiteColor];
+}
++ (UIColor *) ploomAnalogBackgroundFillColor {
+    return [UIColor clearColor];
+}
++ (UIColor *) ploomAnalogThumbStrokeColor {
+    return [UIColor whiteColor];
+}
++ (UIColor *) ploomAnalogThumbFillColor {
+    return [UIColor colorWithWhite:1.0 alpha:0.7];
+}
+
 @end

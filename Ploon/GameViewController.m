@@ -33,7 +33,25 @@
     //GameScene *scene = [GameScene unarchiveFromFile:@"GameScene"];
     scene.scaleMode = SKSceneScaleModeAspectFill;
     // Present the scene.
-    [self.gameView presentScene:scene];
+    [self.gameView presentScene:scene transition:[SKTransition revealWithDirection:SKTransitionDirectionDown duration:1.0]];
+}
+- (IBAction)pauseButtonPressed:(id)sender {
+    self.gameView.scene.paused = !self.gameView.scene.paused;
+    if (self.gameView.scene.paused) {
+        self.gameView.userInteractionEnabled = NO;
+        [UIView animateWithDuration:0.8 delay:0.0 usingSpringWithDamping:0.4 initialSpringVelocity:0.8 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            self.gameView.transform = CGAffineTransformMakeScale(0.8, 0.8);
+        } completion:^(BOOL finished) {
+            
+        }];
+    } else {
+        self.gameView.userInteractionEnabled = YES;
+        [UIView animateWithDuration:0.3 delay:0.0 usingSpringWithDamping:0.4 initialSpringVelocity:0.8 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            self.gameView.transform = CGAffineTransformIdentity;
+        } completion:^(BOOL finished) {
+            
+        }];
+    }
 }
 - (void) gameSceneGameDidEnd:(GameScene *)gameScene {
     [gameScene cleanup];
@@ -42,7 +60,7 @@
     //GameScene *scene = [GameScene unarchiveFromFile:@"GameScene"];
     scene.scaleMode = SKSceneScaleModeAspectFill;
     // Present the scene.
-    [self.gameView presentScene:scene];
+    [self.gameView presentScene:scene transition:[SKTransition revealWithDirection:SKTransitionDirectionDown duration:1.0]];
 }
 
 - (BOOL)shouldAutorotate

@@ -21,7 +21,7 @@
         
         self.shapeNode = [SKShapeNode shapeNodeWithPath:[self pathForSize:CGSizeMake(20.0, 20.0)] centered:YES];
         self.shapeNode.strokeColor = [UIColor ploomEnemyStrokeColor];
-        self.shapeNode.fillColor = [UIColor ploomEnemyFillColor];
+        //self.shapeNode.fillColor = [UIColor ploomEnemyFillColor];
         //self.shapeNode.lineWidth = 3.0;
         //self.shapeNode.glowWidth = 1.0;
         self.shapeNode.lineJoin = kCGLineJoinRound;
@@ -34,13 +34,15 @@
 
         
         SKAction *test1 = [SKAction scaleXTo:0.8 y:1.2 duration:self.animationDuration];
+        test1.timingMode = SKActionTimingEaseIn;
         SKAction *test2 = [SKAction scaleXTo:1.2 y:0.8 duration:self.animationDuration];
+        test2.timingMode = SKActionTimingEaseOut;
         
         
         SKAction *behaviour = [SKAction performSelector:@selector(runBehaviour) onTarget:self];
         [self addChild:self.shapeNode];
         [self runAction:[SKAction repeatActionForever:[SKAction sequence:@[test1, test2]]]];
-        [self runAction:[SKAction repeatActionForever:[SKAction sequence:@[behaviour, [SKAction waitForDuration:0.016 withRange:0.00]]]]];
+        [self runAction:[SKAction repeatActionForever:[SKAction sequence:@[behaviour, [SKAction waitForDuration:0.03]]]]];
     }
     return self;
 }
