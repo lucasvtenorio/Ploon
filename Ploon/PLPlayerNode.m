@@ -18,6 +18,7 @@
         _size = size;
         [self setupShapes];
         [self setupPhysics];
+        self.zPosition = 5;
     }
     return self;
 }
@@ -31,7 +32,7 @@
     CGPathCloseSubpath(mutablePath);
     
     self.mainShapeNode = [SKShapeNode shapeNodeWithPath:mutablePath];
-    self.mainShapeNode.fillColor = [UIColor ploomPlayerFillColor];
+    //self.mainShapeNode.fillColor = [UIColor ploomPlayerFillColor];
     self.mainShapeNode.strokeColor = [UIColor ploomPlayerStrokeColor];
     [self addChild:self.mainShapeNode];
 }
@@ -41,6 +42,15 @@
     self.physicsBody.categoryBitMask = shipCategory;
     self.physicsBody.collisionBitMask = sceneEdgeCategory | enemyCategory | uiCategory;
     self.physicsBody.contactTestBitMask = enemyCategory | bombCategory;
+}
+
+-(void) animateAppearance {
+    [self setScale:0.0];
+    SKAction *overshoot = [SKAction scaleTo:1.5 duration:0.5];
+    overshoot.timingMode = SKActionTimingEaseIn;
+    SKAction *goBack = [SKAction scaleTo:1.0 duration:0.5];
+    goBack.timingMode = SKActionTimingEaseOut;
+    [self runAction:[SKAction sequence:@[overshoot, goBack]]];
 }
 
 - (void) animateDeath {

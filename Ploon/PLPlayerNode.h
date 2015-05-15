@@ -11,5 +11,6 @@
 @interface PLPlayerNode : SKNode
 @property (nonatomic, readonly) CGSize size;
 - (instancetype) initWithSize:(CGSize) size;
+-(void) animateAppearance;
 - (void) animateDeath;
 @end

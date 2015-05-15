@@ -20,6 +20,7 @@
         [self setupShapes];
         [self setupPhysics];
         [self setupAnimations];
+        self.zPosition = 4;
     }
     return self;
 }

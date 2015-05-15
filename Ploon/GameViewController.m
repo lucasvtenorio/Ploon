@@ -21,11 +21,13 @@
     [super viewDidLoad];
 
     // Configure the view.
-    //self.gameView.showsFPS = YES;
-    //self.gameView.showsNodeCount = YES;
+//    self.gameView.showsFPS = YES;
+//    self.gameView.showsNodeCount = YES;
+//    self.gameView.showsDrawCount = YES;
     //skView.showsPhysics = YES;
     /* Sprite Kit applies additional optimizations to improve rendering performance */
     self.gameView.ignoresSiblingOrder = YES;
+    //self.gameView.frameInterval = 2;
     
     // Create and configure the scene.
     GameScene *scene = [GameScene sceneWithSize:self.view.bounds.size];
@@ -33,7 +35,7 @@
     //GameScene *scene = [GameScene unarchiveFromFile:@"GameScene"];
     scene.scaleMode = SKSceneScaleModeAspectFill;
     // Present the scene.
-    [self.gameView presentScene:scene transition:[SKTransition revealWithDirection:SKTransitionDirectionDown duration:1.0]];
+    [self.gameView presentScene:scene];
 }
 - (IBAction)pauseButtonPressed:(id)sender {
     self.gameView.scene.paused = !self.gameView.scene.paused;
@@ -60,7 +62,7 @@
     //GameScene *scene = [GameScene unarchiveFromFile:@"GameScene"];
     scene.scaleMode = SKSceneScaleModeAspectFill;
     // Present the scene.
-    [self.gameView presentScene:scene transition:[SKTransition revealWithDirection:SKTransitionDirectionDown duration:1.0]];
+    [self.gameView presentScene:scene];
 }
 
 - (BOOL)shouldAutorotate

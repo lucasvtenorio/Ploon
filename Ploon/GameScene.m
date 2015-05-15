@@ -37,12 +37,10 @@
 
 -(void)didMoveToView:(SKView *)view {
     [self setupSets];
-    self.maximumNumberofEnemies = 250;
+    self.maximumNumberofEnemies = 400;
     self.physicsWorld.gravity = CGVectorMake(0.0, 0.0);
     self.backgroundColor = [UIColor blackColor];
     self.physicsWorld.contactDelegate = self;
-    
-    
     
     self.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:CGRectMake(0.0, 0.0, self.frame.size.width, self.frame.size.height)];
     self.physicsBody.categoryBitMask = sceneEdgeCategory;
@@ -53,6 +51,8 @@
     [self setupActions];
     [self setupDifficulty];
     [self setupUI];
+    self.shouldEnableEffects = NO;
+    [self.ship animateAppearance];
     //[self setupSound];
     //[self setupFilter];
 }

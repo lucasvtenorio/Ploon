@@ -79,6 +79,7 @@ const NSTimeInterval kThumbSpringBackDuration = 0.15;
 }
 
 - (void) commonInit{
+    self.zPosition = 6;
     _isTracking = NO;
     _velocity = CGPointZero;
     _anchorPointInPoints = CGPointZero;

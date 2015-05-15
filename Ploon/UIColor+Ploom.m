@@ -14,7 +14,7 @@
 }
 
 + (UIColor *) ploomEnemyFillColor {
-    return [UIColor colorWithRed:255/255.0 green:111/255.0 blue:66/255.0 alpha:0.3];
+    return [UIColor colorWithRed:58/255.0 green:24/255.0 blue:16/255.0 alpha:1.0];
 }
 
 + (UIColor *) ploomBombStrokeColor{

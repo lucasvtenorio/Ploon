@@ -18,10 +18,11 @@
 @implementation PLEnemyNode
 - (instancetype) init {
     if (self = [super init]) {
-        
+        self.zPosition = 3;
         self.shapeNode = [SKShapeNode shapeNodeWithPath:[self pathForSize:CGSizeMake(20.0, 20.0)] centered:YES];
         self.shapeNode.strokeColor = [UIColor ploomEnemyStrokeColor];
         //self.shapeNode.fillColor = [UIColor ploomEnemyFillColor];
+        //self.shapeNode.blendMode = SKBlendModeReplace;
         //self.shapeNode.lineWidth = 3.0;
         //self.shapeNode.glowWidth = 1.0;
         self.shapeNode.lineJoin = kCGLineJoinRound;
