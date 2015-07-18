@@ -9,6 +9,20 @@
 /* Begin PBXBuildFile section */
 		0209BF321B057DA100D0BC00 /* Ploom.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0209BF311B057DA100D0BC00 /* Ploom.mp3 */; };
 		0235AF8E1B03A9F700433B50 /* PLBombNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0235AF8D1B03A9F700433B50 /* PLBombNode.m */; };
+		0284418C1B5A00C4000235E6 /* Bass.caf in Resources */ = {isa = PBXBuildFile; fileRef = 028441871B5A00C4000235E6 /* Bass.caf */; };
+		0284418D1B5A00C4000235E6 /* Chord.caf in Resources */ = {isa = PBXBuildFile; fileRef = 028441881B5A00C4000235E6 /* Chord.caf */; };
+		0284418E1B5A00C4000235E6 /* Hi-hat-clap.caf in Resources */ = {isa = PBXBuildFile; fileRef = 028441891B5A00C4000235E6 /* Hi-hat-clap.caf */; };
+		0284418F1B5A00C4000235E6 /* Kick.caf in Resources */ = {isa = PBXBuildFile; fileRef = 0284418A1B5A00C4000235E6 /* Kick.caf */; };
+		028441901B5A00C4000235E6 /* Pad.caf in Resources */ = {isa = PBXBuildFile; fileRef = 0284418B1B5A00C4000235E6 /* Pad.caf */; };
+		02D949201B576A1C003582CC /* Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D9491F1B576A1C003582CC /* Audio.swift */; };
+		02EB2C0E1B5982E8008D2EAD /* main-1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 02EB2C0B1B5982E8008D2EAD /* main-1.caf */; };
+		02EB2C0F1B5982E8008D2EAD /* main-2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 02EB2C0C1B5982E8008D2EAD /* main-2.caf */; };
+		02EB2C101B5982E8008D2EAD /* main-3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 02EB2C0D1B5982E8008D2EAD /* main-3.caf */; };
+		02EE34791B58A3F300FEC336 /* AudioEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EE34781B58A3F300FEC336 /* AudioEngine.swift */; };
+		02EE347B1B58A4A000FEC336 /* AudioNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EE347A1B58A49F00FEC336 /* AudioNode.swift */; };
+		02EE347F1B58A69900FEC336 /* first.caf in Resources */ = {isa = PBXBuildFile; fileRef = 02EE347C1B58A69900FEC336 /* first.caf */; };
+		02EE34801B58A69900FEC336 /* second.caf in Resources */ = {isa = PBXBuildFile; fileRef = 02EE347D1B58A69900FEC336 /* second.caf */; };
+		02EE34811B58A69900FEC336 /* third.caf in Resources */ = {isa = PBXBuildFile; fileRef = 02EE347E1B58A69900FEC336 /* third.caf */; };
 		343DD21C1B03C34B0044DC8B /* PLPlayerNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 343DD21B1B03C34B0044DC8B /* PLPlayerNode.m */; };
 		343DD21F1B03DFFB0044DC8B /* PLEnemyDeathParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 343DD21D1B03DFFB0044DC8B /* PLEnemyDeathParticle.sks */; };
 		343DD2201B03DFFB0044DC8B /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 343DD21E1B03DFFB0044DC8B /* spark.png */; };
@@ -40,6 +54,21 @@
 		0209BF311B057DA100D0BC00 /* Ploom.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Ploom.mp3; sourceTree = "<group>"; };
 		0235AF8C1B03A9F700433B50 /* PLBombNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLBombNode.h; sourceTree = "<group>"; };
 		0235AF8D1B03A9F700433B50 /* PLBombNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLBombNode.m; sourceTree = "<group>"; };
+		028441871B5A00C4000235E6 /* Bass.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bass.caf; sourceTree = "<group>"; };
+		028441881B5A00C4000235E6 /* Chord.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Chord.caf; sourceTree = "<group>"; };
+		028441891B5A00C4000235E6 /* Hi-hat-clap.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Hi-hat-clap.caf"; sourceTree = "<group>"; };
+		0284418A1B5A00C4000235E6 /* Kick.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Kick.caf; sourceTree = "<group>"; };
+		0284418B1B5A00C4000235E6 /* Pad.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Pad.caf; sourceTree = "<group>"; };
+		02D9491E1B576A1C003582CC /* Ploon-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Ploon-Bridging-Header.h"; sourceTree = "<group>"; };
+		02D9491F1B576A1C003582CC /* Audio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Audio.swift; sourceTree = "<group>"; };
+		02EB2C0B1B5982E8008D2EAD /* main-1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "main-1.caf"; sourceTree = "<group>"; };
+		02EB2C0C1B5982E8008D2EAD /* main-2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "main-2.caf"; sourceTree = "<group>"; };
+		02EB2C0D1B5982E8008D2EAD /* main-3.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "main-3.caf"; sourceTree = "<group>"; };
+		02EE34781B58A3F300FEC336 /* AudioEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioEngine.swift; sourceTree = "<group>"; };
+		02EE347A1B58A49F00FEC336 /* AudioNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioNode.swift; sourceTree = "<group>"; };
+		02EE347C1B58A69900FEC336 /* first.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = first.caf; sourceTree = "<group>"; };
+		02EE347D1B58A69900FEC336 /* second.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = second.caf; sourceTree = "<group>"; };
+		02EE347E1B58A69900FEC336 /* third.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = third.caf; sourceTree = "<group>"; };
 		343DD2191B03BBD30044DC8B /* Ploon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Ploon.h; sourceTree = "<group>"; };
 		343DD21A1B03C34B0044DC8B /* PLPlayerNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLPlayerNode.h; sourceTree = "<group>"; };
 		343DD21B1B03C34B0044DC8B /* PLPlayerNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLPlayerNode.m; sourceTree = "<group>"; };
@@ -126,6 +155,9 @@
 				346424E01B02738400BDE907 /* PLAnalogStick.m */,
 				343DD2211B03ED600044DC8B /* UIColor+Ploom.h */,
 				343DD2221B03ED600044DC8B /* UIColor+Ploom.m */,
+				02D9491F1B576A1C003582CC /* Audio.swift */,
+				02EE347A1B58A49F00FEC336 /* AudioNode.swift */,
+				02EE34781B58A3F300FEC336 /* AudioEngine.swift */,
 				34CFC24C1B0121E200592008 /* Main.storyboard */,
 				34CFC24F1B0121E200592008 /* Images.xcassets */,
 				34CFC2511B0121E200592008 /* LaunchScreen.xib */,
@@ -133,6 +165,7 @@
 				343DD21D1B03DFFB0044DC8B /* PLEnemyDeathParticle.sks */,
 				343DD21E1B03DFFB0044DC8B /* spark.png */,
 				0209BF311B057DA100D0BC00 /* Ploom.mp3 */,
+				02D9491E1B576A1C003582CC /* Ploon-Bridging-Header.h */,
 			);
 			path = Ploon;
 			sourceTree = "<group>";
@@ -140,6 +173,17 @@
 		34CFC23D1B0121E200592008 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				028441871B5A00C4000235E6 /* Bass.caf */,
+				028441881B5A00C4000235E6 /* Chord.caf */,
+				028441891B5A00C4000235E6 /* Hi-hat-clap.caf */,
+				0284418A1B5A00C4000235E6 /* Kick.caf */,
+				0284418B1B5A00C4000235E6 /* Pad.caf */,
+				02EB2C0B1B5982E8008D2EAD /* main-1.caf */,
+				02EB2C0C1B5982E8008D2EAD /* main-2.caf */,
+				02EB2C0D1B5982E8008D2EAD /* main-3.caf */,
+				02EE347C1B58A69900FEC336 /* first.caf */,
+				02EE347D1B58A69900FEC336 /* second.caf */,
+				02EE347E1B58A69900FEC336 /* third.caf */,
 				34CFC23E1B0121E200592008 /* Info.plist */,
 				34CFC23F1B0121E200592008 /* main.m */,
 			);
@@ -212,6 +256,7 @@
 				TargetAttributes = {
 					34CFC2391B0121E200592008 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = BUQCK7WB53;
 					};
 					34CFC2571B0121E200592008 = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -243,13 +288,24 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				028441901B5A00C4000235E6 /* Pad.caf in Resources */,
 				34CFC2531B0121E200592008 /* LaunchScreen.xib in Resources */,
+				0284418C1B5A00C4000235E6 /* Bass.caf in Resources */,
+				02EE34801B58A69900FEC336 /* second.caf in Resources */,
+				02EB2C101B5982E8008D2EAD /* main-3.caf in Resources */,
+				02EB2C0F1B5982E8008D2EAD /* main-2.caf in Resources */,
+				02EE347F1B58A69900FEC336 /* first.caf in Resources */,
 				343DD2201B03DFFB0044DC8B /* spark.png in Resources */,
+				02EB2C0E1B5982E8008D2EAD /* main-1.caf in Resources */,
+				02EE34811B58A69900FEC336 /* third.caf in Resources */,
 				34CFC2501B0121E200592008 /* Images.xcassets in Resources */,
+				0284418D1B5A00C4000235E6 /* Chord.caf in Resources */,
+				0284418F1B5A00C4000235E6 /* Kick.caf in Resources */,
 				0209BF321B057DA100D0BC00 /* Ploom.mp3 in Resources */,
 				343DD21F1B03DFFB0044DC8B /* PLEnemyDeathParticle.sks in Resources */,
 				34CFC2481B0121E200592008 /* GameScene.sks in Resources */,
 				34CFC24E1B0121E200592008 /* Main.storyboard in Resources */,
+				0284418E1B5A00C4000235E6 /* Hi-hat-clap.caf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,7 +327,10 @@
 				343DD2231B03ED600044DC8B /* UIColor+Ploom.m in Sources */,
 				34CFC24B1B0121E200592008 /* GameViewController.m in Sources */,
 				34CFC2431B0121E200592008 /* AppDelegate.m in Sources */,
+				02D949201B576A1C003582CC /* Audio.swift in Sources */,
 				0235AF8E1B03A9F700433B50 /* PLBombNode.m in Sources */,
+				02EE347B1B58A4A000FEC336 /* AudioNode.swift in Sources */,
+				02EE34791B58A3F300FEC336 /* AudioEngine.swift in Sources */,
 				346424E11B02738400BDE907 /* PLAnalogStick.m in Sources */,
 				34CFC2461B0121E200592008 /* GameScene.m in Sources */,
 				34CFC2401B0121E200592008 /* main.m in Sources */,
@@ -401,9 +460,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Ploon/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Ploon/Ploon-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -412,10 +477,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_OPTIMIZATION_LEVEL = fast;
 				INFOPLIST_FILE = Ploon/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Ploon/Ploon-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

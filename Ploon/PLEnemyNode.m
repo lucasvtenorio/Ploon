@@ -41,6 +41,7 @@
         
         
         SKAction *behaviour = [SKAction performSelector:@selector(runBehaviour) onTarget:self];
+        
         [self addChild:self.shapeNode];
         [self runAction:[SKAction repeatActionForever:[SKAction sequence:@[test1, test2]]]];
         [self runAction:[SKAction repeatActionForever:[SKAction sequence:@[behaviour, [SKAction waitForDuration:0.03]]]]];

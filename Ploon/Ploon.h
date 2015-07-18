@@ -14,4 +14,5 @@
     static const uint8_t uiCategory = 1<<3;
     static const uint8_t sceneEdgeCategory = 1<<4;
 #import "UIColor+Ploom.h"
+#import "Ploon-Swift.h"
 #endif

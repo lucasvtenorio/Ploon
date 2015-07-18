@@ -24,9 +24,9 @@
 //    self.gameView.showsFPS = YES;
 //    self.gameView.showsNodeCount = YES;
 //    self.gameView.showsDrawCount = YES;
-    //skView.showsPhysics = YES;
+    //self.gameView.showsPhysics = YES;
     /* Sprite Kit applies additional optimizations to improve rendering performance */
-    self.gameView.ignoresSiblingOrder = YES;
+    self.gameView.ignoresSiblingOrder = NO;
     //self.gameView.frameInterval = 2;
     
     // Create and configure the scene.
@@ -38,6 +38,7 @@
     [self.gameView presentScene:scene];
 }
 - (IBAction)pauseButtonPressed:(id)sender {
+    
     self.gameView.scene.paused = !self.gameView.scene.paused;
     if (self.gameView.scene.paused) {
         self.gameView.userInteractionEnabled = NO;
@@ -56,7 +57,7 @@
     }
 }
 - (void) gameSceneGameDidEnd:(GameScene *)gameScene {
-    [gameScene cleanup];
+    //[gameScene cleanup];
     GameScene *scene = [GameScene sceneWithSize:self.view.bounds.size];
     scene.gameDelegate = self;
     //GameScene *scene = [GameScene unarchiveFromFile:@"GameScene"];

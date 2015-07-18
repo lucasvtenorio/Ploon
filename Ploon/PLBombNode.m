@@ -26,6 +26,7 @@
 }
 
 - (void) setupShapes {
+    
     self.mainShapeNode = [SKShapeNode shapeNodeWithCircleOfRadius:self.radius];
     self.mainShapeNode.lineWidth = 1.0;
     //self.mainShapeNode.fillColor = [UIColor ploomBombFillColor];

@@ -11,6 +11,14 @@
 #import "PLBombNode.h"
 #import "PLPlayerNode.h"
 
+typedef NS_ENUM(NSUInteger, GameSceneState) {
+    GameSceneStatePressToStart,
+    GameSceneStateRunning,
+    GameSceneStateEnding,
+    GameSceneStateEnded,
+    GameSceneStateFinished
+};
+static int test = 0;
 @interface GameScene ()
 @property (nonatomic, strong) PLPlayerNode *ship;
 @property (nonatomic) BOOL touched;
@@ -28,6 +36,9 @@
 @property (nonatomic) NSUInteger numberOfEnemiesKilled;
 @property (nonatomic) NSUInteger maximumNumberofEnemies;
 
+@property (nonatomic, strong) AudioNode *audio;
+@property (nonatomic) GameSceneState state;
+@property (nonatomic) BOOL ending;
 
 @end
 
@@ -36,10 +47,28 @@
 #pragma mark - Life Cycle
 
 -(void)didMoveToView:(SKView *)view {
+    NSLog(@"Did move to view! %d", test);
+    test++;
+    self.state = GameSceneStatePressToStart;
+//    [self cleanup];
+//    [self start];
+}
+- (void) dealloc {
+    NSLog(@"Dealloc called!!!!!!");
+}
+- (void) willMoveFromView:(SKView *)view {
+    NSLog(@"Will remove the scene!");
+    [self cleanup];
+}
+
+- (void) start {
+    self.paused = NO;
+    [self setupSound];
     [self setupSets];
     self.maximumNumberofEnemies = 400;
     self.physicsWorld.gravity = CGVectorMake(0.0, 0.0);
     self.backgroundColor = [UIColor blackColor];
+    self.ending = NO;
     self.physicsWorld.contactDelegate = self;
     
     self.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:CGRectMake(0.0, 0.0, self.frame.size.width, self.frame.size.height)];
@@ -53,13 +82,15 @@
     [self setupUI];
     self.shouldEnableEffects = NO;
     [self.ship animateAppearance];
-    //[self setupSound];
+    
+    
+    
+    self.state = GameSceneStateRunning;
     //[self setupFilter];
 }
 
-
 - (void) cleanup {
-    [self removeActionForKey:@"music-action-key"];
+    self.paused = YES;
     [self removeAllChildren];
     [self removeAllActions];
     self.enemiesSet = nil;
@@ -69,9 +100,10 @@
 #pragma mark - Sound
 
 - (void) setupSound {
-    SKAction *mainMusicPlay = [SKAction playSoundFileNamed:@"Ploom.mp3" waitForCompletion:YES];
-    //SKAction *repeatMusic = [SKAction repeatActionForever:mainMusicPlay];
-    [self runAction:mainMusicPlay withKey:@"music-action-key"];
+    self.audio = [AudioNode node];
+    [self addChild:self.audio];
+    [self.audio start];
+    
 }
 
 #pragma mark - UI
@@ -82,7 +114,9 @@
     self.scoreLabelNode.text = @"Score: 0";
     self.scoreLabelNode.fontColor = [UIColor whiteColor];
 
-    CGFloat delta = 100.0;
+    CGFloat delta = 8.0;
+    self.scoreLabelNode.verticalAlignmentMode = SKLabelVerticalAlignmentModeTop;
+    self.scoreLabelNode.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
     self.scoreLabelNode.position = CGPointMake(delta, self.frame.size.height - delta);
     [self addChild:self.scoreLabelNode];
     
@@ -97,7 +131,7 @@
 }
 #pragma mark - Setup
 - (void) setupDifficulty {
-    self.enemiesPerWave = 2;
+    self.enemiesPerWave = 1;
     
     SKAction *increase = [SKAction runBlock:^{
         if (self.enemiesPerWave < 20) {
@@ -105,7 +139,7 @@
         }
     }];
     
-    SKAction *sequence = [SKAction sequence:@[[SKAction waitForDuration:5.0], increase]];
+    SKAction *sequence = [SKAction sequence:@[[SKAction waitForDuration:6.0], increase]];
     [self runAction:[SKAction repeatActionForever:sequence]];
 }
 
@@ -123,7 +157,8 @@
 
 - (void) setupActions {
     SKAction *spawnEnemies = [SKAction performSelector:@selector(spawnEnemy) onTarget:self];
-    [self runAction:[SKAction repeatActionForever:[SKAction sequence:@[spawnEnemies,[SKAction waitForDuration:2.0]]]]];
+    SKAction *wait = [SKAction waitForDuration:2.0];
+    [self runAction:[SKAction repeatActionForever:[SKAction sequence:@[wait, spawnEnemies]]]];
     
     
     SKAction *spawnBombs = [SKAction performSelector:@selector(spawnBomb) onTarget:self];
@@ -231,6 +266,7 @@
     }
     [self.bombsSet removeObject:bombNode];
     [bombNode animateDeath];
+    [self.audio increase];
 }
 
 
@@ -248,10 +284,25 @@
 }
 
 - (void) playerContactedEnemy {
-    if (self.gameDelegate) {
-        if ([self.gameDelegate respondsToSelector:@selector(gameSceneGameDidEnd:)])  {
-            [self.gameDelegate gameSceneGameDidEnd:self];
+    NSLog(@"Player contacted enemy");
+    if (self.state == GameSceneStateRunning) {
+        self.state = GameSceneStateEnding;
+        //self.physicsWorld.contactDelegate = nil;
+        NSLog(@"Going to start Ending!");
+        self.ending = YES;
+        SKAction *end = [SKAction runBlock:^{
+            self.state = GameSceneStateEnded;
+            NSLog(@"Finished end block");
+            
+        }];
+        //[self.audio fadeOut];
+        if (self.audio) {
+            SKAction *a = [self.audio fadeOutAction];
+            [self runAction:[SKAction sequence:@[a, end]]];
+        }else{
+            [self runAction:[SKAction sequence:@[end]]];
         }
+        
     }
 }
 
@@ -364,8 +415,25 @@
     SKAction *sequence = [SKAction sequence:@[animate, reverse]];
     [self runAction:[SKAction repeatActionForever:sequence]];
 }
-//- (void) update:(NSTimeInterval)currentTime {
-//    [self setFilterPoint:self.ship.position];
-//}
+
+
+- (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    if (self.state == GameSceneStatePressToStart) {
+        [self cleanup];
+        [self start];
+    }
+}
+
+- (void) update:(NSTimeInterval)currentTime {
+    if (self.state == GameSceneStateEnded) {
+        if (self.gameDelegate) {
+            if ([self.gameDelegate respondsToSelector:@selector(gameSceneGameDidEnd:)])  {
+                [self.gameDelegate gameSceneGameDidEnd:self];
+            }
+        }
+        self.state = GameSceneStateFinished;
+        NSLog(@"Ending complete");
+    }
+}
 
 @end
