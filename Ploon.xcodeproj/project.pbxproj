@@ -9,12 +9,16 @@
 /* Begin PBXBuildFile section */
 		0209BF321B057DA100D0BC00 /* Ploom.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0209BF311B057DA100D0BC00 /* Ploom.mp3 */; };
 		0235AF8E1B03A9F700433B50 /* PLBombNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0235AF8D1B03A9F700433B50 /* PLBombNode.m */; };
-		0284418C1B5A00C4000235E6 /* Bass.caf in Resources */ = {isa = PBXBuildFile; fileRef = 028441871B5A00C4000235E6 /* Bass.caf */; };
-		0284418D1B5A00C4000235E6 /* Chord.caf in Resources */ = {isa = PBXBuildFile; fileRef = 028441881B5A00C4000235E6 /* Chord.caf */; };
-		0284418E1B5A00C4000235E6 /* Hi-hat-clap.caf in Resources */ = {isa = PBXBuildFile; fileRef = 028441891B5A00C4000235E6 /* Hi-hat-clap.caf */; };
-		0284418F1B5A00C4000235E6 /* Kick.caf in Resources */ = {isa = PBXBuildFile; fileRef = 0284418A1B5A00C4000235E6 /* Kick.caf */; };
-		028441901B5A00C4000235E6 /* Pad.caf in Resources */ = {isa = PBXBuildFile; fileRef = 0284418B1B5A00C4000235E6 /* Pad.caf */; };
 		02D949201B576A1C003582CC /* Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D9491F1B576A1C003582CC /* Audio.swift */; };
+		02E195321B5ADEB300640DB4 /* Bass.caf in Resources */ = {isa = PBXBuildFile; fileRef = 02E1952D1B5ADEB200640DB4 /* Bass.caf */; };
+		02E195331B5ADEB300640DB4 /* Chord.caf in Resources */ = {isa = PBXBuildFile; fileRef = 02E1952E1B5ADEB200640DB4 /* Chord.caf */; };
+		02E195341B5ADEB300640DB4 /* Hi-hat-clap.caf in Resources */ = {isa = PBXBuildFile; fileRef = 02E1952F1B5ADEB300640DB4 /* Hi-hat-clap.caf */; };
+		02E195351B5ADEB300640DB4 /* Kick.caf in Resources */ = {isa = PBXBuildFile; fileRef = 02E195301B5ADEB300640DB4 /* Kick.caf */; };
+		02E195361B5ADEB300640DB4 /* Pad.caf in Resources */ = {isa = PBXBuildFile; fileRef = 02E195311B5ADEB300640DB4 /* Pad.caf */; };
+		02E195391B5C4D7E00640DB4 /* bomb.caf in Resources */ = {isa = PBXBuildFile; fileRef = 02E195371B5C4D7E00640DB4 /* bomb.caf */; };
+		02E1953A1B5C4D7E00640DB4 /* laser.caf in Resources */ = {isa = PBXBuildFile; fileRef = 02E195381B5C4D7E00640DB4 /* laser.caf */; };
+		02E1953C1B5C535100640DB4 /* PLPlayerDeathParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 02E1953B1B5C535100640DB4 /* PLPlayerDeathParticle.sks */; };
+		02E1953E1B5C615C00640DB4 /* callbackKick.caf in Resources */ = {isa = PBXBuildFile; fileRef = 02E1953D1B5C615C00640DB4 /* callbackKick.caf */; };
 		02EB2C0E1B5982E8008D2EAD /* main-1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 02EB2C0B1B5982E8008D2EAD /* main-1.caf */; };
 		02EB2C0F1B5982E8008D2EAD /* main-2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 02EB2C0C1B5982E8008D2EAD /* main-2.caf */; };
 		02EB2C101B5982E8008D2EAD /* main-3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 02EB2C0D1B5982E8008D2EAD /* main-3.caf */; };
@@ -54,13 +58,17 @@
 		0209BF311B057DA100D0BC00 /* Ploom.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Ploom.mp3; sourceTree = "<group>"; };
 		0235AF8C1B03A9F700433B50 /* PLBombNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLBombNode.h; sourceTree = "<group>"; };
 		0235AF8D1B03A9F700433B50 /* PLBombNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLBombNode.m; sourceTree = "<group>"; };
-		028441871B5A00C4000235E6 /* Bass.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bass.caf; sourceTree = "<group>"; };
-		028441881B5A00C4000235E6 /* Chord.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Chord.caf; sourceTree = "<group>"; };
-		028441891B5A00C4000235E6 /* Hi-hat-clap.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Hi-hat-clap.caf"; sourceTree = "<group>"; };
-		0284418A1B5A00C4000235E6 /* Kick.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Kick.caf; sourceTree = "<group>"; };
-		0284418B1B5A00C4000235E6 /* Pad.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Pad.caf; sourceTree = "<group>"; };
 		02D9491E1B576A1C003582CC /* Ploon-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Ploon-Bridging-Header.h"; sourceTree = "<group>"; };
 		02D9491F1B576A1C003582CC /* Audio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Audio.swift; sourceTree = "<group>"; };
+		02E1952D1B5ADEB200640DB4 /* Bass.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bass.caf; sourceTree = "<group>"; };
+		02E1952E1B5ADEB200640DB4 /* Chord.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Chord.caf; sourceTree = "<group>"; };
+		02E1952F1B5ADEB300640DB4 /* Hi-hat-clap.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Hi-hat-clap.caf"; sourceTree = "<group>"; };
+		02E195301B5ADEB300640DB4 /* Kick.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Kick.caf; sourceTree = "<group>"; };
+		02E195311B5ADEB300640DB4 /* Pad.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Pad.caf; sourceTree = "<group>"; };
+		02E195371B5C4D7E00640DB4 /* bomb.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = bomb.caf; sourceTree = "<group>"; };
+		02E195381B5C4D7E00640DB4 /* laser.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = laser.caf; sourceTree = "<group>"; };
+		02E1953B1B5C535100640DB4 /* PLPlayerDeathParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = PLPlayerDeathParticle.sks; sourceTree = "<group>"; };
+		02E1953D1B5C615C00640DB4 /* callbackKick.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = callbackKick.caf; sourceTree = "<group>"; };
 		02EB2C0B1B5982E8008D2EAD /* main-1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "main-1.caf"; sourceTree = "<group>"; };
 		02EB2C0C1B5982E8008D2EAD /* main-2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "main-2.caf"; sourceTree = "<group>"; };
 		02EB2C0D1B5982E8008D2EAD /* main-3.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "main-3.caf"; sourceTree = "<group>"; };
@@ -161,6 +169,7 @@
 				34CFC24C1B0121E200592008 /* Main.storyboard */,
 				34CFC24F1B0121E200592008 /* Images.xcassets */,
 				34CFC2511B0121E200592008 /* LaunchScreen.xib */,
+				02E1953B1B5C535100640DB4 /* PLPlayerDeathParticle.sks */,
 				34CFC23D1B0121E200592008 /* Supporting Files */,
 				343DD21D1B03DFFB0044DC8B /* PLEnemyDeathParticle.sks */,
 				343DD21E1B03DFFB0044DC8B /* spark.png */,
@@ -173,11 +182,14 @@
 		34CFC23D1B0121E200592008 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				028441871B5A00C4000235E6 /* Bass.caf */,
-				028441881B5A00C4000235E6 /* Chord.caf */,
-				028441891B5A00C4000235E6 /* Hi-hat-clap.caf */,
-				0284418A1B5A00C4000235E6 /* Kick.caf */,
-				0284418B1B5A00C4000235E6 /* Pad.caf */,
+				02E1953D1B5C615C00640DB4 /* callbackKick.caf */,
+				02E195371B5C4D7E00640DB4 /* bomb.caf */,
+				02E195381B5C4D7E00640DB4 /* laser.caf */,
+				02E1952D1B5ADEB200640DB4 /* Bass.caf */,
+				02E1952E1B5ADEB200640DB4 /* Chord.caf */,
+				02E1952F1B5ADEB300640DB4 /* Hi-hat-clap.caf */,
+				02E195301B5ADEB300640DB4 /* Kick.caf */,
+				02E195311B5ADEB300640DB4 /* Pad.caf */,
 				02EB2C0B1B5982E8008D2EAD /* main-1.caf */,
 				02EB2C0C1B5982E8008D2EAD /* main-2.caf */,
 				02EB2C0D1B5982E8008D2EAD /* main-3.caf */,
@@ -288,24 +300,28 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				028441901B5A00C4000235E6 /* Pad.caf in Resources */,
+				02E195361B5ADEB300640DB4 /* Pad.caf in Resources */,
 				34CFC2531B0121E200592008 /* LaunchScreen.xib in Resources */,
-				0284418C1B5A00C4000235E6 /* Bass.caf in Resources */,
+				02E195321B5ADEB300640DB4 /* Bass.caf in Resources */,
 				02EE34801B58A69900FEC336 /* second.caf in Resources */,
 				02EB2C101B5982E8008D2EAD /* main-3.caf in Resources */,
+				02E1953E1B5C615C00640DB4 /* callbackKick.caf in Resources */,
 				02EB2C0F1B5982E8008D2EAD /* main-2.caf in Resources */,
 				02EE347F1B58A69900FEC336 /* first.caf in Resources */,
 				343DD2201B03DFFB0044DC8B /* spark.png in Resources */,
 				02EB2C0E1B5982E8008D2EAD /* main-1.caf in Resources */,
+				02E195391B5C4D7E00640DB4 /* bomb.caf in Resources */,
 				02EE34811B58A69900FEC336 /* third.caf in Resources */,
 				34CFC2501B0121E200592008 /* Images.xcassets in Resources */,
-				0284418D1B5A00C4000235E6 /* Chord.caf in Resources */,
-				0284418F1B5A00C4000235E6 /* Kick.caf in Resources */,
+				02E1953A1B5C4D7E00640DB4 /* laser.caf in Resources */,
+				02E1953C1B5C535100640DB4 /* PLPlayerDeathParticle.sks in Resources */,
+				02E195331B5ADEB300640DB4 /* Chord.caf in Resources */,
+				02E195351B5ADEB300640DB4 /* Kick.caf in Resources */,
 				0209BF321B057DA100D0BC00 /* Ploom.mp3 in Resources */,
 				343DD21F1B03DFFB0044DC8B /* PLEnemyDeathParticle.sks in Resources */,
 				34CFC2481B0121E200592008 /* GameScene.sks in Resources */,
 				34CFC24E1B0121E200592008 /* Main.storyboard in Resources */,
-				0284418E1B5A00C4000235E6 /* Hi-hat-clap.caf in Resources */,
+				02E195341B5ADEB300640DB4 /* Hi-hat-clap.caf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

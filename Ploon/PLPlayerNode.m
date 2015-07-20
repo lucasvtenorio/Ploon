@@ -54,6 +54,11 @@
 }
 
 - (void) animateDeath {
-    
+    NSString *myParticlePath = [[NSBundle mainBundle] pathForResource:@"PLPlayerDeathParticle" ofType:@"sks"];
+    SKEmitterNode *myParticle = [NSKeyedUnarchiver unarchiveObjectWithFile:myParticlePath];
+    myParticle.particlePosition = CGPointZero;
+    myParticle.targetNode = self.parent;
+    //myParticle.particleBirthRate = 5;
+    [self addChild:myParticle];
 }
 @end

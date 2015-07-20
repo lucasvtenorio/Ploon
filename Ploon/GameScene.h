@@ -11,7 +11,13 @@
 
 #import "Ploon.h"
 
-
+typedef NS_ENUM(NSUInteger, GameSceneState) {
+    GameSceneStatePressToStart,
+    GameSceneStateRunning,
+    GameSceneStateEnding,
+    GameSceneStateEnded,
+    GameSceneStateFinished
+};
 
 @class GameScene;
 @protocol GameSceneDelegate <NSObject>
@@ -22,5 +28,6 @@
 @property (nonatomic, strong) NSArray *enemies;
 @property (nonatomic, readonly) CGPoint playerPosition;
 @property (nonatomic, weak) id <GameSceneDelegate> gameDelegate;
+@property (nonatomic, readonly) GameSceneState state;
 - (void) cleanup;
 @end

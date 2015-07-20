@@ -44,7 +44,7 @@
         
         [self addChild:self.shapeNode];
         [self runAction:[SKAction repeatActionForever:[SKAction sequence:@[test1, test2]]]];
-        [self runAction:[SKAction repeatActionForever:[SKAction sequence:@[behaviour, [SKAction waitForDuration:0.03]]]]];
+        [self runAction:[SKAction repeatActionForever:[SKAction sequence:@[behaviour, [SKAction waitForDuration:0.016]]]]];
     }
     return self;
 }
@@ -53,7 +53,9 @@
     if (self.parent) {
         if ([self.parent isKindOfClass:[GameScene class]]) {
             GameScene *gameScene = (GameScene *)self.parent;
-            [self seekPoint:[gameScene playerPosition]];
+            if (gameScene.state == GameSceneStateRunning) {
+                [self seekPoint:[gameScene playerPosition]];
+            }
         }
     }
 }
@@ -74,7 +76,29 @@
     CGFloat length = [self lenghtOfPoint:point];
     return CGPointMake(point.x / length, point.y / length);
 }
-
+- (void) wanderInside:(CGRect) rect{
+    CGPoint p = rect.origin;
+    
+    p.x += arc4random_uniform((int)rect.size.width);
+    p.y += arc4random_uniform((int)rect.size.height);
+    [self seekPoint:p];
+    
+}
+- (void) avoidPoint:(CGPoint) point {
+    CGFloat max_speed = 5.0;
+    CGFloat max_force = 5.0;
+    CGFloat slowingDistance = 3.0;
+    CGPoint target_offset = CGPointMake(point.x - self.position.x, point.y - self.position.y);
+    CGFloat distance = [self lenghtOfPoint:target_offset];
+    CGFloat ramped_speed = max_speed * (distance / slowingDistance);
+    CGFloat clipped_speed  = MIN(ramped_speed, max_speed);
+    CGVector desired_velocity = CGVectorMake(target_offset.x * (clipped_speed / distance), target_offset.y * (clipped_speed / distance));
+    CGVector steering = CGVectorMake(desired_velocity.dx - self.physicsBody.velocity.dx, desired_velocity.dy - self.physicsBody.velocity.dy);
+    CGVector steering_normalized = [self normalizeVector:steering];
+    CGVector steering_force = CGVectorMake(steering_normalized.dx * max_force, steering_normalized.dy * max_force);
+    steering_force = CGVectorMake(steering_force.dx * -1, steering_force.dy * -1);
+    [self.physicsBody applyForce:steering_force];
+}
 - (void) seekPoint:(CGPoint) point {
     CGFloat max_speed = 200.0;
     CGFloat max_force = 60.0;
@@ -130,6 +154,7 @@
     NSString *myParticlePath = [[NSBundle mainBundle] pathForResource:@"PLEnemyDeathParticle" ofType:@"sks"];
     SKEmitterNode *myParticle = [NSKeyedUnarchiver unarchiveObjectWithFile:myParticlePath];
     myParticle.particlePosition = self.position;
+    
     //myParticle.particleBirthRate = 5;
     [self.parent addChild:myParticle];
     [self removeFromParent];

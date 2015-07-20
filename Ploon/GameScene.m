@@ -11,13 +11,7 @@
 #import "PLBombNode.h"
 #import "PLPlayerNode.h"
 
-typedef NS_ENUM(NSUInteger, GameSceneState) {
-    GameSceneStatePressToStart,
-    GameSceneStateRunning,
-    GameSceneStateEnding,
-    GameSceneStateEnded,
-    GameSceneStateFinished
-};
+
 static int test = 0;
 @interface GameScene ()
 @property (nonatomic, strong) PLPlayerNode *ship;
@@ -37,7 +31,6 @@ static int test = 0;
 @property (nonatomic) NSUInteger maximumNumberofEnemies;
 
 @property (nonatomic, strong) AudioNode *audio;
-@property (nonatomic) GameSceneState state;
 @property (nonatomic) BOOL ending;
 
 @end
@@ -49,7 +42,7 @@ static int test = 0;
 -(void)didMoveToView:(SKView *)view {
     NSLog(@"Did move to view! %d", test);
     test++;
-    self.state = GameSceneStatePressToStart;
+    _state = GameSceneStatePressToStart;
 //    [self cleanup];
 //    [self start];
 }
@@ -85,7 +78,7 @@ static int test = 0;
     
     
     
-    self.state = GameSceneStateRunning;
+    _state = GameSceneStateRunning;
     //[self setupFilter];
 }
 
@@ -157,7 +150,7 @@ static int test = 0;
 
 - (void) setupActions {
     SKAction *spawnEnemies = [SKAction performSelector:@selector(spawnEnemy) onTarget:self];
-    SKAction *wait = [SKAction waitForDuration:2.0];
+    SKAction *wait = [SKAction waitForDuration:128.0/60.0];
     [self runAction:[SKAction repeatActionForever:[SKAction sequence:@[wait, spawnEnemies]]]];
     
     
@@ -184,6 +177,7 @@ static int test = 0;
 }
 
 - (void) spawnEnemy {
+    [self.audio enemySpawned];
     NSUInteger random = self.enemiesPerWave;
     if (self.enemiesPerWave > 5) {
         if (random + self.enemiesSet.count <= self.maximumNumberofEnemies) {
@@ -228,9 +222,11 @@ static int test = 0;
 #pragma mark - Analog Stick Delegate
 
 - (void) analogStick:(PLAnalogStick *)analogStick movedWithVelocity:(CGPoint)velocity andAngularVelocity:(CGFloat)angularVelocity {
-    self.ship.position = CGPointMake(self.ship.position.x + (velocity.x * 0.12), self.ship.position.y + (velocity.y * 0.12));
-    
-    self.ship.zRotation = angularVelocity;
+    if (self.state == GameSceneStateRunning) {
+        self.ship.position = CGPointMake(self.ship.position.x + (velocity.x * 0.12), self.ship.position.y + (velocity.y * 0.12));
+        
+        self.ship.zRotation = angularVelocity;
+    }
 }
 
 #pragma mark - Physics
@@ -282,18 +278,21 @@ static int test = 0;
     }
     return result;
 }
-
+- (void) switchToEnd {
+    [self.audio playerExploded];
+    _state = GameSceneStateEnded;
+}
 - (void) playerContactedEnemy {
     NSLog(@"Player contacted enemy");
     if (self.state == GameSceneStateRunning) {
-        self.state = GameSceneStateEnding;
+        _state = GameSceneStateEnding;
+        [self.ship animateDeath];
         //self.physicsWorld.contactDelegate = nil;
         NSLog(@"Going to start Ending!");
         self.ending = YES;
         SKAction *end = [SKAction runBlock:^{
-            self.state = GameSceneStateEnded;
+            [self switchToEnd];
             NSLog(@"Finished end block");
-            
         }];
         //[self.audio fadeOut];
         if (self.audio) {
@@ -431,7 +430,7 @@ static int test = 0;
                 [self.gameDelegate gameSceneGameDidEnd:self];
             }
         }
-        self.state = GameSceneStateFinished;
+        _state = GameSceneStateFinished;
         NSLog(@"Ending complete");
     }
 }

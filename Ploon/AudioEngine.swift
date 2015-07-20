@@ -11,14 +11,15 @@ import AVFoundation
 class AudioEngine: NSObject {
     private let engine = AVAudioEngine()
     private var channels = Dictionary<String, (AVAudioPlayerNode, AVAudioUnitTimePitch)>()
-    static let sharedEngine = AudioEngine()
     
-    func addChannel(#name: String, file: AVAudioFile, configuration: ChannelConfiguration = ChannelConfiguration.identity) {
+    static let sharedEngine = AudioEngine()
+    var callbacks =  Dictionary<String, ()->() >()
+    func addChannel(#name: String, file: AVAudioFile, configuration: ChannelConfiguration = ChannelConfiguration.identity, looping: Bool = true) {
         if let (player, timeNode) = self.channels[name] {
             self.apply(configuration: configuration, name: name)
             timeNode.reset()
             player.stop()
-            self.readFileToChannel(channel: name, file: file)
+            self.readFileToChannel(channel: name, file: file, looping:looping)
         }else{
             let player = AVAudioPlayerNode()
             let timeNode = AVAudioUnitTimePitch()
@@ -28,18 +29,29 @@ class AudioEngine: NSObject {
             self.engine.connect(player, to: timeNode, format: buffer.format)
             self.engine.connect(timeNode, to: self.engine.mainMixerNode, format: buffer.format)
             self.channels[name] = (player, timeNode)
-            self.readFileToChannel(channel: name, file: file)
+            self.readFileToChannel(channel: name, file: file, looping:looping)
             self.apply(configuration: configuration, name: name)
         }
     }
     
-    private func readFileToChannel(#channel: String, file: AVAudioFile) {
+    private func readFileToChannel(#channel: String, file: AVAudioFile, looping: Bool = true) {
         if let (player, timeNode) = self.channels[channel] {
             let buffer = AVAudioPCMBuffer(PCMFormat: file.processingFormat, frameCapacity: AVAudioFrameCount(file.length))
             file.framePosition = 0
             var error: NSError?
             if file.readIntoBuffer(buffer, error: &error) {
-                player.scheduleBuffer(buffer, atTime: nil, options: AVAudioPlayerNodeBufferOptions.Loops | AVAudioPlayerNodeBufferOptions.Interrupts, completionHandler: nil)
+                let options: AVAudioPlayerNodeBufferOptions
+                if looping {
+                    options = AVAudioPlayerNodeBufferOptions.Loops | AVAudioPlayerNodeBufferOptions.Interrupts
+                } else{
+                    options = AVAudioPlayerNodeBufferOptions.Interrupts
+                }
+                
+                player.scheduleBuffer(buffer, atTime: nil, options: options){ [weak self] in
+                    if let s = self, callback = s.callbacks[channel] {
+                        callback()
+                    }
+                }
             }else{
                 println("Error reading file to channel in AudioEngine(\(error?.localizedDescription))")
             }
