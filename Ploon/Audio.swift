@@ -73,6 +73,13 @@ struct AudioEngineState: Interpolable{
     }
 }
 
+extension Array {
+    func randomElement() -> T {
+        let index = arc4random_uniform(UInt32(self.count))
+        return self[Int(index)]
+    }
+}
+
 extension Float: Interpolable{
     static func lerp(#from: Float, to: Float, t: Float) -> Float {
         if t <= 0.0 {

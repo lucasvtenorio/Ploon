@@ -14,7 +14,7 @@ class AudioNode: SKNode {
     private let fadeInDuration: NSTimeInterval = 2.0
     private let fadeOutDuration: NSTimeInterval = 4.0
     private lazy var engine = AudioEngine.sharedEngine
-    private lazy var mainTrack = Composition.ploonFastTrack()
+    private lazy var mainTrack = [Composition.ploonFastTrack(), Composition.ploonBassHeavy(), Composition.ploonMainTrack()].randomElement()
     
     private lazy var first = AVAudioFile.readAudioFile(name: "main-1", type: "caf")
     private lazy var second = AVAudioFile.readAudioFile(name: "main-2", type: "caf")
@@ -130,16 +130,21 @@ class AudioNode: SKNode {
     
     func fadeOutAction() -> SKAction {
         self.removeAllActions()
+        let begin = self.engine.state
+        var middle = AudioEngineState()
+        for (name, configuration) in begin.configurations {
+            middle.addConfiguration(channelName: name, configuration: ChannelConfiguration(volume: configuration.volume * 0.7, rate: 0.5))
+        }
+        var end = AudioEngineState()
+        for (name, configuration) in begin.configurations {
+            end.addConfiguration(channelName: name, configuration: ChannelConfiguration.silentVerySlow)
+        }
         let a = SKAction.customActionWithDuration(self.fadeOutDuration){[weak self] (node, time) in
             if let s = self {
-                let begin = s.engine.state
-                var end = AudioEngineState()
-                for (name, configuration) in begin.configurations {
-                    end.addConfiguration(channelName: name, configuration: ChannelConfiguration.silentVerySlow)
-                }
+                
                 let percentage = NSTimeInterval(time) / s.fadeOutDuration
                 //println("Fading out: \(percentage)")
-                let state = lerpGroup([begin, end], Float(percentage))
+                let state = lerpGroup([begin, middle, end], Float(percentage))
                 s.engine.apply(state: state)
             }
         }

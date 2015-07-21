@@ -134,4 +134,35 @@ struct Composition {
         
         return Composition(channels: channels, states: [first, second, third, fourth, fifth])
     }
+    
+    static func ploonBassHeavy() -> Composition{
+        let bass = AVAudioFile.readAudioFile(name: "Bass3", type: "caf")!
+        let lead = AVAudioFile.readAudioFile(name: "Lead", type: "caf")!
+        let kick = AVAudioFile.readAudioFile(name: "Kick3", type: "caf")!
+        let channels = [
+            "bass": bass,
+            "kick":kick,
+            "lead":lead
+        ]
+        //[kick, bass, lead]
+        let first = AudioEngineState(channelDescription: [
+            "kick": true,
+            "bass": false,
+            "lead": false
+            ])
+        
+        let second = AudioEngineState(channelDescription: [
+            "kick": true,
+            "bass": true,
+            "lead": false
+            ])
+        
+        let third = AudioEngineState(channelDescription: [
+            "kick": true,
+            "bass": true,
+            "lead": true
+            ])
+
+        return Composition(channels: channels, states: [first, second, third])
+    }
 }

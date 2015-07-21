@@ -14,6 +14,9 @@
 		02447A911B5D58B500AFEB1F /* Bass2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 02447A8D1B5D58B500AFEB1F /* Bass2.caf */; };
 		02447A921B5D58B500AFEB1F /* Hi-hat-clap-2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 02447A8E1B5D58B500AFEB1F /* Hi-hat-clap-2.caf */; };
 		02447A931B5D58B500AFEB1F /* Kick2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 02447A8F1B5D58B500AFEB1F /* Kick2.caf */; };
+		024F1D051B5DED4600003789 /* Bass3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 024F1D021B5DED4600003789 /* Bass3.caf */; };
+		024F1D061B5DED4600003789 /* Kick3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 024F1D031B5DED4600003789 /* Kick3.caf */; };
+		024F1D071B5DED4600003789 /* Lead.caf in Resources */ = {isa = PBXBuildFile; fileRef = 024F1D041B5DED4600003789 /* Lead.caf */; };
 		02D949201B576A1C003582CC /* Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D9491F1B576A1C003582CC /* Audio.swift */; };
 		02E195321B5ADEB300640DB4 /* Bass.caf in Resources */ = {isa = PBXBuildFile; fileRef = 02E1952D1B5ADEB200640DB4 /* Bass.caf */; };
 		02E195331B5ADEB300640DB4 /* Chord.caf in Resources */ = {isa = PBXBuildFile; fileRef = 02E1952E1B5ADEB200640DB4 /* Chord.caf */; };
@@ -68,6 +71,9 @@
 		02447A8D1B5D58B500AFEB1F /* Bass2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bass2.caf; sourceTree = "<group>"; };
 		02447A8E1B5D58B500AFEB1F /* Hi-hat-clap-2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Hi-hat-clap-2.caf"; sourceTree = "<group>"; };
 		02447A8F1B5D58B500AFEB1F /* Kick2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Kick2.caf; sourceTree = "<group>"; };
+		024F1D021B5DED4600003789 /* Bass3.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bass3.caf; sourceTree = "<group>"; };
+		024F1D031B5DED4600003789 /* Kick3.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Kick3.caf; sourceTree = "<group>"; };
+		024F1D041B5DED4600003789 /* Lead.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Lead.caf; sourceTree = "<group>"; };
 		02D9491E1B576A1C003582CC /* Ploon-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Ploon-Bridging-Header.h"; sourceTree = "<group>"; };
 		02D9491F1B576A1C003582CC /* Audio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Audio.swift; sourceTree = "<group>"; };
 		02E1952D1B5ADEB200640DB4 /* Bass.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bass.caf; sourceTree = "<group>"; };
@@ -193,6 +199,9 @@
 		34CFC23D1B0121E200592008 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				024F1D021B5DED4600003789 /* Bass3.caf */,
+				024F1D031B5DED4600003789 /* Kick3.caf */,
+				024F1D041B5DED4600003789 /* Lead.caf */,
 				02447A8C1B5D58B500AFEB1F /* Arpeggiator.caf */,
 				02447A8D1B5D58B500AFEB1F /* Bass2.caf */,
 				02447A8E1B5D58B500AFEB1F /* Hi-hat-clap-2.caf */,
@@ -326,6 +335,7 @@
 				02EE347F1B58A69900FEC336 /* first.caf in Resources */,
 				343DD2201B03DFFB0044DC8B /* spark.png in Resources */,
 				02EB2C0E1B5982E8008D2EAD /* main-1.caf in Resources */,
+				024F1D071B5DED4600003789 /* Lead.caf in Resources */,
 				02E195391B5C4D7E00640DB4 /* bomb.caf in Resources */,
 				02EE34811B58A69900FEC336 /* third.caf in Resources */,
 				34CFC2501B0121E200592008 /* Images.xcassets in Resources */,
@@ -333,6 +343,7 @@
 				02E1953A1B5C4D7E00640DB4 /* laser.caf in Resources */,
 				02E1953C1B5C535100640DB4 /* PLPlayerDeathParticle.sks in Resources */,
 				02E195331B5ADEB300640DB4 /* Chord.caf in Resources */,
+				024F1D061B5DED4600003789 /* Kick3.caf in Resources */,
 				02E195351B5ADEB300640DB4 /* Kick.caf in Resources */,
 				0209BF321B057DA100D0BC00 /* Ploom.mp3 in Resources */,
 				343DD21F1B03DFFB0044DC8B /* PLEnemyDeathParticle.sks in Resources */,
@@ -340,6 +351,7 @@
 				02447A901B5D58B500AFEB1F /* Arpeggiator.caf in Resources */,
 				34CFC2481B0121E200592008 /* GameScene.sks in Resources */,
 				34CFC24E1B0121E200592008 /* Main.storyboard in Resources */,
+				024F1D051B5DED4600003789 /* Bass3.caf in Resources */,
 				02E195341B5ADEB300640DB4 /* Hi-hat-clap.caf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
