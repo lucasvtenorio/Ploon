@@ -14,6 +14,8 @@ class AudioNode: SKNode {
     private let fadeInDuration: NSTimeInterval = 2.0
     private let fadeOutDuration: NSTimeInterval = 4.0
     private lazy var engine = AudioEngine.sharedEngine
+    private lazy var mainTrack = Composition.ploonFastTrack()
+    
     private lazy var first = AVAudioFile.readAudioFile(name: "main-1", type: "caf")
     private lazy var second = AVAudioFile.readAudioFile(name: "main-2", type: "caf")
     private lazy var third = AVAudioFile.readAudioFile(name: "main-3", type: "caf")
@@ -34,11 +36,24 @@ class AudioNode: SKNode {
     let final = ChannelConfiguration(volume: 1.0, rate: 1.0)
     
     private var files: [AVAudioFile] {
+        
         return [kick, hihat, bass, pad, chord]
     }
     
     
     private var channelsPlaying = 0
+    
+    func fadeInState(state: AudioEngineState) {
+        let fromState = self.engine.state
+        let toState = state
+        let a = SKAction.customActionWithDuration(self.fadeInDuration){ (node, time) in
+            let percentage = NSTimeInterval(time) / self.fadeInDuration
+            let state = lerpGroup([fromState, toState], Float(percentage))
+            //println("Fading channel \(channel): \(percentage)")
+            self.engine.apply(state: state)
+        }
+        self.runAction(a, withKey: "fadeStateActionKey")
+    }
     
     func fadeInChannel(index: Int) {
         if index >= 0 && index < self.files.count {
@@ -64,9 +79,14 @@ class AudioNode: SKNode {
 
     
     func setupMainTrack() {
-        for (index, file) in enumerate(self.files) {
-            self.engine.addChannel(name: "main-\(index)", file: file, configuration: self.initial)
+        
+        for (name, file) in self.mainTrack.channels {
+            self.engine.addChannel(name: name, file: file, configuration: ChannelConfiguration.silentNormalRate, looping: true)
         }
+        
+//        for (index, file) in enumerate(self.files) {
+//            self.engine.addChannel(name: "main-\(index)", file: file, configuration: self.initial)
+//        }
 //        self.engine.callbacks["callback"] = {[weak self] in
 //            if let s = self {
 ////                
@@ -84,7 +104,8 @@ class AudioNode: SKNode {
         self.setupMainTrack()
         engine.start()
         engine.play()
-        self.increase()
+        self.fadeInState(self.mainTrack.currentState)
+        //self.increase()
 //        if let first = self.first, second = self.second, third = self.third {
 //            engine.addChannel(name: "first", file: bass)
 //            engine.addChannel(name: "second", file: chord)
@@ -102,17 +123,19 @@ class AudioNode: SKNode {
     }
     
     func increase() {
-        self.fadeInChannel(self.channelsPlaying)
+        self.mainTrack.nextState()
+        self.fadeInState(self.mainTrack.currentState)
+        //self.fadeInChannel(self.channelsPlaying)
     }
     
     func fadeOutAction() -> SKAction {
-        
+        self.removeAllActions()
         let a = SKAction.customActionWithDuration(self.fadeOutDuration){[weak self] (node, time) in
             if let s = self {
                 let begin = s.engine.state
                 var end = AudioEngineState()
                 for (name, configuration) in begin.configurations {
-                    end.addConfiguration(channelName: name, configuration: ChannelConfiguration(volume: 0.0, rate: 0.1))
+                    end.addConfiguration(channelName: name, configuration: ChannelConfiguration.silentVerySlow)
                 }
                 let percentage = NSTimeInterval(time) / s.fadeOutDuration
                 //println("Fading out: \(percentage)")

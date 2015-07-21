@@ -262,7 +262,9 @@ static int test = 0;
     }
     [self.bombsSet removeObject:bombNode];
     [bombNode animateDeath];
-    [self.audio increase];
+    if (self.state == GameSceneStateRunning) {
+        [self.audio increase];
+    }
 }
 
 

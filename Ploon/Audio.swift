@@ -44,6 +44,19 @@ struct AudioEngineState: Interpolable{
             return self.dictionary
         }
     }
+    init() {
+        
+    }
+    init(channelDescription: Dictionary<String, Bool>) {
+        for (channel, normal) in channelDescription {
+            if normal {
+                self.addConfiguration(channelName: channel, configuration: ChannelConfiguration.identity)
+            } else {
+                self.addConfiguration(channelName: channel, configuration: ChannelConfiguration.silentNormalRate)
+            }
+            
+        }
+    }
     mutating func addConfiguration(#channelName: String, configuration: ChannelConfiguration) {
         self.dictionary[channelName] = configuration
     }
@@ -81,4 +94,7 @@ struct ChannelConfiguration: Interpolable {
         return ChannelConfiguration(volume: v, rate: r)
     }
     static let identity = ChannelConfiguration(volume: 1.0, rate: 1.0)
+    static let silentNormalRate = ChannelConfiguration(volume: 0.0, rate: 1.0)
+    static let silentVerySlow = ChannelConfiguration(volume: 0.0, rate: 0.1)
+    
 }

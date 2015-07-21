@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		0209BF321B057DA100D0BC00 /* Ploom.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0209BF311B057DA100D0BC00 /* Ploom.mp3 */; };
 		0235AF8E1B03A9F700433B50 /* PLBombNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0235AF8D1B03A9F700433B50 /* PLBombNode.m */; };
+		02447A8B1B5D447400AFEB1F /* Composition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02447A8A1B5D447400AFEB1F /* Composition.swift */; };
+		02447A901B5D58B500AFEB1F /* Arpeggiator.caf in Resources */ = {isa = PBXBuildFile; fileRef = 02447A8C1B5D58B500AFEB1F /* Arpeggiator.caf */; };
+		02447A911B5D58B500AFEB1F /* Bass2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 02447A8D1B5D58B500AFEB1F /* Bass2.caf */; };
+		02447A921B5D58B500AFEB1F /* Hi-hat-clap-2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 02447A8E1B5D58B500AFEB1F /* Hi-hat-clap-2.caf */; };
+		02447A931B5D58B500AFEB1F /* Kick2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 02447A8F1B5D58B500AFEB1F /* Kick2.caf */; };
 		02D949201B576A1C003582CC /* Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D9491F1B576A1C003582CC /* Audio.swift */; };
 		02E195321B5ADEB300640DB4 /* Bass.caf in Resources */ = {isa = PBXBuildFile; fileRef = 02E1952D1B5ADEB200640DB4 /* Bass.caf */; };
 		02E195331B5ADEB300640DB4 /* Chord.caf in Resources */ = {isa = PBXBuildFile; fileRef = 02E1952E1B5ADEB200640DB4 /* Chord.caf */; };
@@ -58,6 +63,11 @@
 		0209BF311B057DA100D0BC00 /* Ploom.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Ploom.mp3; sourceTree = "<group>"; };
 		0235AF8C1B03A9F700433B50 /* PLBombNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLBombNode.h; sourceTree = "<group>"; };
 		0235AF8D1B03A9F700433B50 /* PLBombNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLBombNode.m; sourceTree = "<group>"; };
+		02447A8A1B5D447400AFEB1F /* Composition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Composition.swift; sourceTree = "<group>"; };
+		02447A8C1B5D58B500AFEB1F /* Arpeggiator.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Arpeggiator.caf; sourceTree = "<group>"; };
+		02447A8D1B5D58B500AFEB1F /* Bass2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bass2.caf; sourceTree = "<group>"; };
+		02447A8E1B5D58B500AFEB1F /* Hi-hat-clap-2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Hi-hat-clap-2.caf"; sourceTree = "<group>"; };
+		02447A8F1B5D58B500AFEB1F /* Kick2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Kick2.caf; sourceTree = "<group>"; };
 		02D9491E1B576A1C003582CC /* Ploon-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Ploon-Bridging-Header.h"; sourceTree = "<group>"; };
 		02D9491F1B576A1C003582CC /* Audio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Audio.swift; sourceTree = "<group>"; };
 		02E1952D1B5ADEB200640DB4 /* Bass.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bass.caf; sourceTree = "<group>"; };
@@ -164,6 +174,7 @@
 				343DD2211B03ED600044DC8B /* UIColor+Ploom.h */,
 				343DD2221B03ED600044DC8B /* UIColor+Ploom.m */,
 				02D9491F1B576A1C003582CC /* Audio.swift */,
+				02447A8A1B5D447400AFEB1F /* Composition.swift */,
 				02EE347A1B58A49F00FEC336 /* AudioNode.swift */,
 				02EE34781B58A3F300FEC336 /* AudioEngine.swift */,
 				34CFC24C1B0121E200592008 /* Main.storyboard */,
@@ -182,6 +193,10 @@
 		34CFC23D1B0121E200592008 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				02447A8C1B5D58B500AFEB1F /* Arpeggiator.caf */,
+				02447A8D1B5D58B500AFEB1F /* Bass2.caf */,
+				02447A8E1B5D58B500AFEB1F /* Hi-hat-clap-2.caf */,
+				02447A8F1B5D58B500AFEB1F /* Kick2.caf */,
 				02E1953D1B5C615C00640DB4 /* callbackKick.caf */,
 				02E195371B5C4D7E00640DB4 /* bomb.caf */,
 				02E195381B5C4D7E00640DB4 /* laser.caf */,
@@ -304,6 +319,7 @@
 				34CFC2531B0121E200592008 /* LaunchScreen.xib in Resources */,
 				02E195321B5ADEB300640DB4 /* Bass.caf in Resources */,
 				02EE34801B58A69900FEC336 /* second.caf in Resources */,
+				02447A911B5D58B500AFEB1F /* Bass2.caf in Resources */,
 				02EB2C101B5982E8008D2EAD /* main-3.caf in Resources */,
 				02E1953E1B5C615C00640DB4 /* callbackKick.caf in Resources */,
 				02EB2C0F1B5982E8008D2EAD /* main-2.caf in Resources */,
@@ -313,12 +329,15 @@
 				02E195391B5C4D7E00640DB4 /* bomb.caf in Resources */,
 				02EE34811B58A69900FEC336 /* third.caf in Resources */,
 				34CFC2501B0121E200592008 /* Images.xcassets in Resources */,
+				02447A921B5D58B500AFEB1F /* Hi-hat-clap-2.caf in Resources */,
 				02E1953A1B5C4D7E00640DB4 /* laser.caf in Resources */,
 				02E1953C1B5C535100640DB4 /* PLPlayerDeathParticle.sks in Resources */,
 				02E195331B5ADEB300640DB4 /* Chord.caf in Resources */,
 				02E195351B5ADEB300640DB4 /* Kick.caf in Resources */,
 				0209BF321B057DA100D0BC00 /* Ploom.mp3 in Resources */,
 				343DD21F1B03DFFB0044DC8B /* PLEnemyDeathParticle.sks in Resources */,
+				02447A931B5D58B500AFEB1F /* Kick2.caf in Resources */,
+				02447A901B5D58B500AFEB1F /* Arpeggiator.caf in Resources */,
 				34CFC2481B0121E200592008 /* GameScene.sks in Resources */,
 				34CFC24E1B0121E200592008 /* Main.storyboard in Resources */,
 				02E195341B5ADEB300640DB4 /* Hi-hat-clap.caf in Resources */,
@@ -340,6 +359,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				343DD21C1B03C34B0044DC8B /* PLPlayerNode.m in Sources */,
+				02447A8B1B5D447400AFEB1F /* Composition.swift in Sources */,
 				343DD2231B03ED600044DC8B /* UIColor+Ploom.m in Sources */,
 				34CFC24B1B0121E200592008 /* GameViewController.m in Sources */,
 				34CFC2431B0121E200592008 /* AppDelegate.m in Sources */,
